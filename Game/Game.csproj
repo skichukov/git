@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BattleRepository.cs" />
+    <Compile Include="Data\HeroeRepository.cs" />
+    <Compile Include="Data\UserRepository.cs" />
+    <Compile Include="Models\Battle.cs" />
+    <Compile Include="Models\Heroe.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="RegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,5 +130,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
