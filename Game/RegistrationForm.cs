@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Game.Data;
+using Game.Services;
 
 namespace Game
 {
@@ -30,22 +32,14 @@ namespace Game
             lf.Show();
         }
 
-        string data = "Data Source=STILI\\SQLEXPRESS;Initial Catalog=GameDb;Integrated Security=True";
-        //boolean
-
         private void regBtn_Click(object sender, EventArgs e)
         {
             if (passwordBox1.Text == passwordBox2.Text)
             {
-                SqlConnection s = new SqlConnection(data);
-                s.Open();
-                string cmd = "insert into Users (NAME, USERNAME, PASSWORD, DateCreated) " +
-                    "VALUES( '" + nameBox.Text + "', '" + usernameBox.Text + "', '" +
-                    passwordBox2.Text + "', CURRENT_TIMESTAMP)";
-                SqlCommand command = new SqlCommand(cmd, s);
-                command.ExecuteNonQuery();
-
                 MainForm mf = new MainForm();
+                UserService us = new UserService();
+                us.InsertUser(nameBox.Text, usernameBox.Text, passwordBox2.Text);
+
                 this.Hide();
                 mf.Show();
             }
