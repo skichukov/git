@@ -30,6 +30,11 @@ namespace Game.Services
             _usersRepository.CreateUser(user);
         }
 
+        public bool HasUser(string username, string password)
+        {
+            return _usersRepository.HasUser(username, password);
+        }
+
         public User GetUserById(int id)
         {
             return _usersRepository.GetUserById(id);

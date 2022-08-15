@@ -11,11 +11,10 @@ namespace Game.Data
 {
     internal class UserRepository
     {
-        string data = "Data Source=STILI\\SQLEXPRESS;Initial Catalog=GameDb;Integrated Security=True";
+        SqlConnection s = new SqlConnection(Properties.Settings.Default.data);
 
         public void CreateUser(User user)
         {
-            SqlConnection s = new SqlConnection(data);
             s.Open();
             string query = "Insert into Users ([Name], [Username], [Password], [DateCreated])" +
                 " values(@Name, @Username, @Password, @DateCreated)";
@@ -28,9 +27,30 @@ namespace Game.Data
             object result = command.ExecuteNonQuery();
         }
 
+        public bool HasUser(string username, string password)
+        {
+            //s.Open();
+            string query = "Select [Name], [Username], [Password], [DateCreated] from Users" +
+                " where Username = @Username and Password = @Password";
+            SqlDataAdapter sda = new SqlDataAdapter(query, s);
+            sda.SelectCommand.Parameters.Add("@Username", SqlDbType.NVarChar).Value = username;
+            sda.SelectCommand.Parameters.Add("@Password", SqlDbType.NVarChar).Value = password;
+            DataTable dtbl = new DataTable();
+            sda.Fill(dtbl);
+
+            if(dtbl.Rows.Count == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         public User GetUserById(int id)
         {
-            SqlConnection s = new SqlConnection(data);
             s.Open();
             string query = "Select [Name], [Username], [Password], [DateCreated] from Users" +
                 " where Id = @Id";
@@ -62,7 +82,6 @@ namespace Game.Data
         public List<User> GetUsers()
         {
             List<User> users = new List<User>();
-            SqlConnection s = new SqlConnection(data);
             s.Open();
             string query = "Select [Name], [Username], [Password], [DateCreated] from Users";
             SqlCommand command = new SqlCommand(query, s);

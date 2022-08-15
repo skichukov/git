@@ -15,6 +15,8 @@ namespace Game
 {
     public partial class RegistrationForm : Form
     {
+        bool isLoggedIn = false;
+
         public RegistrationForm()
         {
             InitializeComponent();
@@ -42,6 +44,7 @@ namespace Game
 
                 this.Hide();
                 mf.Show();
+                isLoggedIn = true;
             }
             else
             {

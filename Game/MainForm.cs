@@ -16,5 +16,13 @@ namespace Game
         {
             InitializeComponent();
         }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            LoginForm lf = new LoginForm();
+            this.Hide();
+            lf.Show();
+            Game.Properties.Settings.Default.Save();
+        }
     }
 }

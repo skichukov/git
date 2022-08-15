@@ -30,6 +30,7 @@
         {
             this.CreateHeroLink = new System.Windows.Forms.LinkLabel();
             this.logoutBtn = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.SuspendLayout();
             // 
             // CreateHeroLink
@@ -51,6 +52,15 @@
             this.logoutBtn.TabIndex = 1;
             this.logoutBtn.Text = "Изход";
             this.logoutBtn.UseVisualStyleBackColor = true;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // MainForm
             // 
@@ -59,6 +69,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.logoutBtn);
             this.Controls.Add(this.CreateHeroLink);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);
@@ -70,5 +82,6 @@
 
         private System.Windows.Forms.LinkLabel CreateHeroLink;
         private System.Windows.Forms.Button logoutBtn;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }
