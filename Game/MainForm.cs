@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Game.Models;
+using Game.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +14,25 @@ namespace Game
 {
     public partial class MainForm : Form
     {
+        UserService us = new UserService();
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void logoutBtn_Click(object sender, EventArgs e)
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            foreach(User user in us.GetUsers())
+            {
+                //user.ToString();
+                listWithUsers.Items.Add(user);
+            }
+            
+            listWithUsers.Show();
+        }
+
+        private void lOutStripTextBox_Click(object sender, EventArgs e)
         {
             LoginForm lf = new LoginForm();
             this.Hide();
