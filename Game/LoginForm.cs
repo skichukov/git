@@ -20,18 +20,28 @@ namespace Game
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            MainForm mf = new MainForm();
-            UserService us = new UserService();
-
-            if(us.HasUser(usernameTxt.Text, passwordTxt.Text))
+            if(usernameTxt.Text == null || passwordTxt.Text == null)
             {
-                this.Hide();
-                mf.Show();
+                MessageBox.Show("Въведете потребителско име и парола!");
             }
             else
             {
-                MessageBox.Show("Проверете Вашето потребителско име и парола!");
+                MainForm mf = new MainForm();
+                UserService us = new UserService();
+
+                if(us.HasUserWith(usernameTxt.Text, passwordTxt.Text))
+                {
+                    this.Hide();
+                    mf.Show();
+                    us.SaveUser(usernameTxt.Text, passwordTxt.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Проверете Вашето потребителско име и парола!");
+                }
+
             }
+            
             
         }
 

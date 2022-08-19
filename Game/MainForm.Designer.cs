@@ -93,6 +93,7 @@
             this.toolStripTextBox2.ShortcutsEnabled = false;
             this.toolStripTextBox2.Size = new System.Drawing.Size(200, 23);
             this.toolStripTextBox2.Text = "Редактирайте информацията си";
+            this.toolStripTextBox2.Click += new System.EventHandler(this.toolStripTextBox2_Click);
             // 
             // lOutStripTextBox
             // 

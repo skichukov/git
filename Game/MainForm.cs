@@ -23,13 +23,16 @@ namespace Game
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
+            /*
             foreach(User user in us.GetUsers())
             {
-                //user.ToString();
+                user.ToString();
                 listWithUsers.Items.Add(user);
             }
             
             listWithUsers.Show();
+            */
+            us.GetUsers();
         }
 
         private void lOutStripTextBox_Click(object sender, EventArgs e)
@@ -38,6 +41,13 @@ namespace Game
             this.Hide();
             lf.Show();
             Game.Properties.Settings.Default.Save();
+        }
+
+        private void toolStripTextBox2_Click(object sender, EventArgs e)
+        {
+            UpdateUserForm update = new UpdateUserForm();
+            this.Hide();
+            update.Show();
         }
     }
 }

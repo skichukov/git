@@ -12,6 +12,7 @@ namespace Game.Data
     internal class UserRepository
     {
         SqlConnection s = new SqlConnection(Properties.Settings.Default.data);
+        User loggedUser;
 
         public void CreateUser(User user)
         {
@@ -27,7 +28,33 @@ namespace Game.Data
             object result = command.ExecuteNonQuery();
         }
 
-        public bool HasUser(string username, string password)
+        internal void SaveUser(User user)
+        {
+            s.Open();
+            string query = "Select [Name], [Username], [Password], [DateCreated] from Users" +
+                " where Username = @Username and Password = @Password";
+            SqlCommand command = new SqlCommand(query, s);
+            command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = user.Username;
+            command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = user.Password;
+
+            SqlDataReader r = command.ExecuteReader(CommandBehavior.CloseConnection);
+            if(r.HasRows)
+            {
+                while(r.Read())
+                {
+                    loggedUser = new User
+                    {
+                        Id = r.GetInt32(0),
+                        Name = r.GetString(1),
+                        Username = r.GetString(2),
+                        Password = r.GetString(3),
+                        DateCreated = r.GetDateTime(4)
+                    };
+                }
+            }
+        }
+
+        public bool HasUserWith(string username, string password)
         {
             //s.Open();
             string query = "Select [Name], [Username], [Password], [DateCreated] from Users" +
