@@ -41,6 +41,11 @@ namespace Game.Services
             _usersRepository.SaveUser(user);
         }
 
+        public User GetCurrentUser()
+        {
+            return _usersRepository.GetCurrentUser();
+        }
+
         public bool HasUserWith(string username, string password)
         {
             return _usersRepository.HasUserWith(username, password);
@@ -54,6 +59,11 @@ namespace Game.Services
         public List<User> GetUsers()
         {
             return _usersRepository.GetUsers();
+        }
+
+        public void UpdateUser(User user)
+        {
+            _usersRepository.UpdateUser(user);
         }
     }
 }

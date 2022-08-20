@@ -43,11 +43,13 @@ namespace Game
             Game.Properties.Settings.Default.Save();
         }
 
-        private void toolStripTextBox2_Click(object sender, EventArgs e)
+        private void updtStripTextBox_Click(object sender, EventArgs e)
         {
             UpdateUserForm update = new UpdateUserForm();
             this.Hide();
             update.Show();
+
+            update.Print();
         }
     }
 }

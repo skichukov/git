@@ -54,6 +54,11 @@ namespace Game.Data
             }
         }
 
+        public User GetCurrentUser()
+        {
+            return loggedUser;
+        }
+
         public bool HasUserWith(string username, string password)
         {
             //s.Open();
@@ -132,6 +137,20 @@ namespace Game.Data
             }
 
             return users;
+        }
+
+        public void UpdateUser(User user)
+        {
+            s.Open();
+            string query = "Update Users Set Name = @Name, Username = @Username, Passsword = "
+                + "@Password where Id = @Id";
+            SqlCommand command = new SqlCommand(query, s);
+            command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = user.Name;
+            command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = user.Username;
+            command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = user.Password;
+            command.Parameters.Add("@Id", SqlDbType.Int).Value = user.Id;
+
+            object result = command.ExecuteNonQuery();
         }
         
     }

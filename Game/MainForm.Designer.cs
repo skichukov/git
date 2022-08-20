@@ -81,6 +81,7 @@
             // 
             this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.ReadOnly = true;
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 23);
             this.toolStripTextBox1.Text = "Вижте списъка с потребители";
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
@@ -90,16 +91,18 @@
             this.toolStripTextBox2.AutoSize = false;
             this.toolStripTextBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox2.Name = "toolStripTextBox2";
+            this.toolStripTextBox2.ReadOnly = true;
             this.toolStripTextBox2.ShortcutsEnabled = false;
             this.toolStripTextBox2.Size = new System.Drawing.Size(200, 23);
             this.toolStripTextBox2.Text = "Редактирайте информацията си";
-            this.toolStripTextBox2.Click += new System.EventHandler(this.toolStripTextBox2_Click);
+            this.toolStripTextBox2.Click += new System.EventHandler(this.updtStripTextBox_Click);
             // 
             // lOutStripTextBox
             // 
             this.lOutStripTextBox.AutoSize = false;
             this.lOutStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lOutStripTextBox.Name = "lOutStripTextBox";
+            this.lOutStripTextBox.ReadOnly = true;
             this.lOutStripTextBox.Size = new System.Drawing.Size(200, 23);
             this.lOutStripTextBox.Text = "Изход";
             this.lOutStripTextBox.Click += new System.EventHandler(this.lOutStripTextBox_Click);
