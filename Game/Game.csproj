@@ -65,6 +65,20 @@
     <Compile Include="Data\BattleRepository.cs" />
     <Compile Include="Data\HeroeRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
+    <Compile Include="GameDbDataSet.cs">
+      <DependentUpon>GameDbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GameDbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameDbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="List_Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="List_Users.Designer.cs">
+      <DependentUpon>List_Users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Battle.cs" />
     <Compile Include="Models\Heroe.cs" />
     <Compile Include="Models\User.cs" />
@@ -96,6 +110,9 @@
     <Compile Include="UpdateUserForm.Designer.cs">
       <DependentUpon>UpdateUserForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="List_Users.resx">
+      <DependentUpon>List_Users.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +135,17 @@
     <EmbeddedResource Include="UpdateUserForm.resx">
       <DependentUpon>UpdateUserForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="GameDbDataSet.xsc">
+      <DependentUpon>GameDbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GameDbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GameDbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GameDbDataSet.xss">
+      <DependentUpon>GameDbDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
