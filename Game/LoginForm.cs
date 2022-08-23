@@ -20,11 +20,7 @@ namespace Game
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            if(usernameTxt.Text == null || passwordTxt.Text == null)
-            {
-                MessageBox.Show("Въведете потребителско име и парола!");
-            }
-            else
+            if(usernameTxt.Text != "" && passwordTxt.Text != "")
             {
                 MainForm mf = new MainForm();
                 UserService us = new UserService();
@@ -39,6 +35,10 @@ namespace Game
                 {
                     MessageBox.Show("Проверете Вашето потребителско име и парола!");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Въведете потребителско име и парола!");
 
             }
             

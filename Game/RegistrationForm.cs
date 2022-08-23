@@ -22,11 +22,6 @@ namespace Game
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             LoginForm lf = new LoginForm();
@@ -41,6 +36,7 @@ namespace Game
                 MainForm mf = new MainForm();
                 UserService us = new UserService();
                 us.InsertUser(nameBox.Text, usernameBox.Text, passwordBox2.Text);
+                us.SaveUser(usernameBox.Text, passwordBox2.Text);
 
                 this.Hide();
                 mf.Show();

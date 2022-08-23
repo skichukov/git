@@ -31,7 +31,7 @@ namespace Game.Data
         internal void SaveUser(User user)
         {
             s.Open();
-            string query = "Select [Name], [Username], [Password], [DateCreated] from Users" +
+            string query = "Select * from Users" +
                 " where Username = @Username and Password = @Password";
             SqlCommand command = new SqlCommand(query, s);
             command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = user.Username;

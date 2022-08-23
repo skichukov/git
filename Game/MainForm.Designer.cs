@@ -31,8 +31,8 @@
             this.CreateHeroLink = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.опцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
+            this.viewUsersTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.updateTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.lOutStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.listWithUsers = new System.Windows.Forms.ListBox();
             this.dataSet1 = new System.Data.DataSet();
@@ -70,32 +70,32 @@
             // опцииToolStripMenuItem
             // 
             this.опцииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTextBox1,
-            this.toolStripTextBox2,
+            this.viewUsersTextBox,
+            this.updateTextBox,
             this.lOutStripTextBox});
             this.опцииToolStripMenuItem.Name = "опцииToolStripMenuItem";
             this.опцииToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.опцииToolStripMenuItem.Text = "Опции";
             // 
-            // toolStripTextBox1
+            // viewUsersTextBox
             // 
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.ReadOnly = true;
-            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 23);
-            this.toolStripTextBox1.Text = "Вижте списъка с потребители";
-            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            this.viewUsersTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.viewUsersTextBox.Name = "viewUsersTextBox";
+            this.viewUsersTextBox.ReadOnly = true;
+            this.viewUsersTextBox.Size = new System.Drawing.Size(200, 23);
+            this.viewUsersTextBox.Text = "Вижте списъка с потребители";
+            this.viewUsersTextBox.Click += new System.EventHandler(this.viewUsersTextBox_Click);
             // 
-            // toolStripTextBox2
+            // updateTextBox
             // 
-            this.toolStripTextBox2.AutoSize = false;
-            this.toolStripTextBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.ReadOnly = true;
-            this.toolStripTextBox2.ShortcutsEnabled = false;
-            this.toolStripTextBox2.Size = new System.Drawing.Size(200, 23);
-            this.toolStripTextBox2.Text = "Редактирайте информацията си";
-            this.toolStripTextBox2.Click += new System.EventHandler(this.updtStripTextBox_Click);
+            this.updateTextBox.AutoSize = false;
+            this.updateTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.updateTextBox.Name = "updateTextBox";
+            this.updateTextBox.ReadOnly = true;
+            this.updateTextBox.ShortcutsEnabled = false;
+            this.updateTextBox.Size = new System.Drawing.Size(200, 23);
+            this.updateTextBox.Text = "Редактирайте информацията си";
+            this.updateTextBox.Click += new System.EventHandler(this.updtStripTextBox_Click);
             // 
             // lOutStripTextBox
             // 
@@ -145,8 +145,8 @@
         private System.Windows.Forms.LinkLabel CreateHeroLink;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem опцииToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
+        private System.Windows.Forms.ToolStripTextBox viewUsersTextBox;
+        private System.Windows.Forms.ToolStripTextBox updateTextBox;
         private System.Windows.Forms.ListBox listWithUsers;
         private System.Windows.Forms.ToolStripTextBox lOutStripTextBox;
         private System.Data.DataSet dataSet1;

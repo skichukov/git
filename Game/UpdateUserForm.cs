@@ -32,16 +32,16 @@ namespace Game
 
         public void Print()
         {
-            txtBox_name.Text = current_user.Name;
-            txtBox_username.Text = current_user.Username;
-            txtBox_pass.Text = current_user.Password;
+            txtBox_name.Text = us.GetCurrentUser().Name;
+            txtBox_username.Text = us.GetCurrentUser().Username;
+            txtBox_pass.Text = us.GetCurrentUser().Password;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            current_user.Name = txtBox_name.Text;
-            current_user.Username = txtBox_username.Text;
-            current_user.Password = txtBox_pass.Text;
+            us.GetCurrentUser().Name = txtBox_name.Text;
+            us.GetCurrentUser().Username = txtBox_username.Text;
+            us.GetCurrentUser().Password = txtBox_pass.Text;
 
             us.UpdateUser(current_user);
             this.Hide();

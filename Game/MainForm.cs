@@ -15,13 +15,14 @@ namespace Game
     public partial class MainForm : Form
     {
         UserService us = new UserService();
+        List_Users lu = new List_Users();
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        private void viewUsersTextBox_Click(object sender, EventArgs e)
         {
             /*
             foreach(User user in us.GetUsers())
@@ -32,7 +33,8 @@ namespace Game
             
             listWithUsers.Show();
             */
-            us.GetUsers();
+            this.Hide();
+            lu.Show();
         }
 
         private void lOutStripTextBox_Click(object sender, EventArgs e)

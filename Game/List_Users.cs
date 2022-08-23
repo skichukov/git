@@ -31,5 +31,12 @@ namespace Game
             this.uSERSTableAdapter.Fill(this.gameDbDataSet.USERS);
 
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            MainForm mf = new MainForm();
+            this.Hide();
+            mf.Show();
+        }
     }
 }
