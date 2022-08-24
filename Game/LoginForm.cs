@@ -13,9 +13,13 @@ namespace Game
 {
     public partial class LoginForm : Form
     {
+        Constants c = Constants.GetConstants();
+        UserService us;
+
         public LoginForm()
         {
             InitializeComponent();
+            us = c.GetService();
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -23,7 +27,6 @@ namespace Game
             if(usernameTxt.Text != "" && passwordTxt.Text != "")
             {
                 MainForm mf = new MainForm();
-                UserService us = new UserService();
 
                 if(us.HasUserWith(usernameTxt.Text, passwordTxt.Text))
                 {

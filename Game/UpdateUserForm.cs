@@ -14,14 +14,16 @@ namespace Game
 {
     public partial class UpdateUserForm : Form
     {
-        UserService us = new UserService();
+        Constants c = Constants.GetConstants();
+        UserService us;
         MainForm mf = new MainForm();
         User current_user;
 
         public UpdateUserForm()
         {
             InitializeComponent();
-            current_user = us.GetCurrentUser();
+            //current_user = us.GetCurrentUser();
+            us = c.GetService();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

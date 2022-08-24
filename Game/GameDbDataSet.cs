@@ -9,3 +9,10 @@
         }
     }
 }
+
+namespace Game.GameDbDataSetTableAdapters {
+    
+    
+    public partial class USERSTableAdapter {
+    }
+}
