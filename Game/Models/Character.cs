@@ -20,6 +20,7 @@ namespace Game.Models
         public int DefencePoints { get; set; }
         public int HealthPoints { get; set; }
         public DateTime DateCreated { get; set; }
+
         [ForeignKey("UserId")]
         public User ParentUser { get; set; }
     }

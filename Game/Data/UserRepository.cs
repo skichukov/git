@@ -52,6 +52,7 @@ namespace Game.Data
                     };
                 }
             }
+            s.Close();
         }
 
         public User GetCurrentUser()
@@ -108,6 +109,7 @@ namespace Game.Data
             }
 
             return new User();
+            s.Close();
         }
 
         
@@ -151,6 +153,7 @@ namespace Game.Data
             command.Parameters.Add("@Id", SqlDbType.Int).Value = user.Id;
 
             object result = command.ExecuteNonQuery();
+            s.Close();
         }
         
     }
