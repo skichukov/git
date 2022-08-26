@@ -22,7 +22,6 @@ namespace Game
         public UpdateUserForm()
         {
             InitializeComponent();
-            //current_user = us.GetCurrentUser();
             us = c.GetService();
         }
 

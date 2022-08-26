@@ -26,6 +26,7 @@ namespace Game.Data
             command.Parameters.Add("@DateCreated", SqlDbType.DateTime).Value = user.DateCreated;
 
             object result = command.ExecuteNonQuery();
+            s.Close();
         }
 
         internal void SaveUser(User user)
@@ -144,7 +145,7 @@ namespace Game.Data
         public void UpdateUser(User user)
         {
             s.Open();
-            string query = "Update Users Set Name = @Name, Username = @Username, Passsword = "
+            string query = "Update Users Set Name = @Name, Username = @Username, Password = "
                 + "@Password where Id = @Id";
             SqlCommand command = new SqlCommand(query, s);
             command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = user.Name;

@@ -63,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="CreateHero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateHero.Designer.cs">
+      <DependentUpon>CreateHero.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\BattleRepository.cs" />
     <Compile Include="Data\HeroeRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
@@ -111,6 +117,9 @@
     <Compile Include="UpdateUserForm.Designer.cs">
       <DependentUpon>UpdateUserForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CreateHero.resx">
+      <DependentUpon>CreateHero.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="List_Users.resx">
       <DependentUpon>List_Users.cs</DependentUpon>
     </EmbeddedResource>

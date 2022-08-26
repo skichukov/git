@@ -14,7 +14,6 @@ namespace Game
 {
     public partial class MainForm : Form
     {
-        UserService us = new UserService();
         List_Users lu = new List_Users();
 
         public MainForm()
@@ -24,15 +23,6 @@ namespace Game
 
         private void viewUsersTextBox_Click(object sender, EventArgs e)
         {
-            /*
-            foreach(User user in us.GetUsers())
-            {
-                user.ToString();
-                listWithUsers.Items.Add(user);
-            }
-            
-            listWithUsers.Show();
-            */
             this.Hide();
             lu.Show();
         }
@@ -52,6 +42,20 @@ namespace Game
             update.Show();
 
             update.Print();
+        }
+
+        private void CreateHeroLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CreateHero ch = new CreateHero();
+            ch.Show();
+        }
+
+        private void deleteTextBox_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Сигурни ли сте, че искате да изтриете профила си?",
+               "Изисква се потвърждение", MessageBoxButtons.YesNo);
+            
+            
         }
     }
 }

@@ -34,8 +34,8 @@
             this.viewUsersTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.updateTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.lOutStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.listWithUsers = new System.Windows.Forms.ListBox();
             this.dataSet1 = new System.Data.DataSet();
+            this.deleteTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +58,7 @@
             this.CreateHeroLink.TabIndex = 0;
             this.CreateHeroLink.TabStop = true;
             this.CreateHeroLink.Text = "Създаване на герой";
+            this.CreateHeroLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CreateHeroLink_LinkClicked);
             // 
             // menuStrip1
             // 
@@ -74,7 +75,8 @@
             this.опцииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewUsersTextBox,
             this.updateTextBox,
-            this.lOutStripTextBox});
+            this.lOutStripTextBox,
+            this.deleteTextBox});
             this.опцииToolStripMenuItem.Name = "опцииToolStripMenuItem";
             this.опцииToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.опцииToolStripMenuItem.Text = "Опции";
@@ -109,18 +111,19 @@
             this.lOutStripTextBox.Text = "Изход";
             this.lOutStripTextBox.Click += new System.EventHandler(this.lOutStripTextBox_Click);
             // 
-            // listWithUsers
-            // 
-            this.listWithUsers.FormattingEnabled = true;
-            this.listWithUsers.Location = new System.Drawing.Point(227, 226);
-            this.listWithUsers.Name = "listWithUsers";
-            this.listWithUsers.Size = new System.Drawing.Size(335, 134);
-            this.listWithUsers.TabIndex = 3;
-            this.listWithUsers.Visible = false;
-            // 
             // dataSet1
             // 
             this.dataSet1.DataSetName = "NewDataSet";
+            // 
+            // deleteTextBox
+            // 
+            this.deleteTextBox.AutoSize = false;
+            this.deleteTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.deleteTextBox.Name = "deleteTextBox";
+            this.deleteTextBox.ReadOnly = true;
+            this.deleteTextBox.Size = new System.Drawing.Size(200, 23);
+            this.deleteTextBox.Text = "Изтриване на профила";
+            this.deleteTextBox.Click += new System.EventHandler(this.deleteTextBox_Click);
             // 
             // MainForm
             // 
@@ -128,7 +131,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listWithUsers);
             this.Controls.Add(this.CreateHeroLink);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -149,8 +151,8 @@
         private System.Windows.Forms.ToolStripMenuItem опцииToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox viewUsersTextBox;
         private System.Windows.Forms.ToolStripTextBox updateTextBox;
-        private System.Windows.Forms.ListBox listWithUsers;
         private System.Windows.Forms.ToolStripTextBox lOutStripTextBox;
         private System.Data.DataSet dataSet1;
+        private System.Windows.Forms.ToolStripTextBox deleteTextBox;
     }
 }

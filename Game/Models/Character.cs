@@ -12,7 +12,6 @@ namespace Game.Models
     {
         [Key]
         public int Id { get; set; }
-        //[ForeignKey("Id")]
         public int UserId { get; set; }
         public string CharacterName { get; set; }
         public string Type { get; set; }
