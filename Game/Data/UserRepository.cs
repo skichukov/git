@@ -156,6 +156,17 @@ namespace Game.Data
             object result = command.ExecuteNonQuery();
             s.Close();
         }
+
+        public void DeleteUser(User user)
+        {
+            s.Open();
+            string query = "Delete from Users where Id = @Id";
+            SqlCommand command = new SqlCommand(query, s);
+            command.Parameters.Add("@Id", SqlDbType.Int).Value = user.Id;
+
+            command.ExecuteNonQuery();
+            s.Close();
+        }
         
     }
 }

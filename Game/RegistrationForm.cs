@@ -16,10 +16,13 @@ namespace Game
     public partial class RegistrationForm : Form
     {
         bool isLoggedIn = false;
+        Constants c = Constants.GetConstants();
+        UserService us;
 
         public RegistrationForm()
         {
             InitializeComponent();
+            us = c.GetService();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -34,7 +37,6 @@ namespace Game
             if (passwordBox1.Text == passwordBox2.Text)
             {
                 MainForm mf = new MainForm();
-                UserService us = new UserService();
                 us.InsertUser(nameBox.Text, usernameBox.Text, passwordBox2.Text);
                 us.SaveUser(usernameBox.Text, passwordBox2.Text);
 

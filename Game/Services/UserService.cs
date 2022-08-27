@@ -65,5 +65,10 @@ namespace Game.Services
         {
             _usersRepository.UpdateUser(user);
         }
+
+        public void DeleteUser(User user)
+        {
+            _usersRepository.DeleteUser(user);
+        }
     }
 }

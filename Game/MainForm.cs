@@ -15,10 +15,16 @@ namespace Game
     public partial class MainForm : Form
     {
         List_Users lu = new List_Users();
+        LoginForm lf = new LoginForm();
+        Constants c = Constants.GetConstants();
+        UserService us;
+        User loggedUser;
 
         public MainForm()
         {
             InitializeComponent();
+            us = c.GetService();
+            loggedUser = us.GetCurrentUser();
         }
 
         private void viewUsersTextBox_Click(object sender, EventArgs e)
@@ -29,7 +35,6 @@ namespace Game
 
         private void lOutStripTextBox_Click(object sender, EventArgs e)
         {
-            LoginForm lf = new LoginForm();
             this.Hide();
             lf.Show();
             Game.Properties.Settings.Default.Save();
@@ -52,8 +57,13 @@ namespace Game
 
         private void deleteTextBox_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Сигурни ли сте, че искате да изтриете профила си?",
-               "Изисква се потвърждение", MessageBoxButtons.YesNo);
+            if(MessageBox.Show("Сигурни ли сте, че искате да изтриете профила си?",
+               "Изисква се потвърждение", MessageBoxButtons.YesNo) == DialogResult.Yes) 
+            {
+                us.DeleteUser(loggedUser);
+                this.Hide();
+                lf.Show();
+            }
             
             
         }
