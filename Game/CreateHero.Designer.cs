@@ -31,9 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.createHeroBtn = new System.Windows.Forms.Button();
             this.lblNameHero = new System.Windows.Forms.Label();
-            this.lblClass = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -48,7 +46,7 @@
             // 
             // createHeroBtn
             // 
-            this.createHeroBtn.Location = new System.Drawing.Point(165, 283);
+            this.createHeroBtn.Location = new System.Drawing.Point(153, 198);
             this.createHeroBtn.Name = "createHeroBtn";
             this.createHeroBtn.Size = new System.Drawing.Size(75, 23);
             this.createHeroBtn.TabIndex = 1;
@@ -58,43 +56,25 @@
             // lblNameHero
             // 
             this.lblNameHero.AutoSize = true;
-            this.lblNameHero.Location = new System.Drawing.Point(80, 92);
+            this.lblNameHero.Location = new System.Drawing.Point(87, 114);
             this.lblNameHero.Name = "lblNameHero";
-            this.lblNameHero.Size = new System.Drawing.Size(29, 13);
+            this.lblNameHero.Size = new System.Drawing.Size(76, 13);
             this.lblNameHero.TabIndex = 2;
-            this.lblNameHero.Text = "Име";
-            // 
-            // lblClass
-            // 
-            this.lblClass.AutoSize = true;
-            this.lblClass.Location = new System.Drawing.Point(80, 135);
-            this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(32, 13);
-            this.lblClass.TabIndex = 3;
-            this.lblClass.Text = "Клас";
+            this.lblNameHero.Text = "Име на героя";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(189, 89);
+            this.textBox1.Location = new System.Drawing.Point(196, 111);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 4;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(189, 132);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 5;
             // 
             // CreateHero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 364);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(392, 251);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.lblClass);
             this.Controls.Add(this.lblNameHero);
             this.Controls.Add(this.createHeroBtn);
             this.Controls.Add(this.label1);
@@ -110,8 +90,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button createHeroBtn;
         private System.Windows.Forms.Label lblNameHero;
-        private System.Windows.Forms.Label lblClass;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
     }
 }

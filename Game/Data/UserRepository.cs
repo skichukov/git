@@ -110,7 +110,6 @@ namespace Game.Data
             }
 
             return new User();
-            s.Close();
         }
 
         

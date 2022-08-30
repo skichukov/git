@@ -14,7 +14,6 @@ namespace Game.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public string CharacterName { get; set; }
-        public string Type { get; set; }
         public int AttackPoints { get; set; }
         public int DefencePoints { get; set; }
         public int HealthPoints { get; set; }
