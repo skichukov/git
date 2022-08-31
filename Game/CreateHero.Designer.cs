@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.createHeroBtn = new System.Windows.Forms.Button();
             this.lblNameHero = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_heroName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -52,6 +52,7 @@
             this.createHeroBtn.TabIndex = 1;
             this.createHeroBtn.Text = "Създаване";
             this.createHeroBtn.UseVisualStyleBackColor = true;
+            this.createHeroBtn.Click += new System.EventHandler(this.createHeroBtn_Click);
             // 
             // lblNameHero
             // 
@@ -62,19 +63,19 @@
             this.lblNameHero.TabIndex = 2;
             this.lblNameHero.Text = "Име на героя";
             // 
-            // textBox1
+            // textBox_heroName
             // 
-            this.textBox1.Location = new System.Drawing.Point(196, 111);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
+            this.textBox_heroName.Location = new System.Drawing.Point(196, 111);
+            this.textBox_heroName.Name = "textBox_heroName";
+            this.textBox_heroName.Size = new System.Drawing.Size(100, 20);
+            this.textBox_heroName.TabIndex = 4;
             // 
             // CreateHero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(392, 251);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_heroName);
             this.Controls.Add(this.lblNameHero);
             this.Controls.Add(this.createHeroBtn);
             this.Controls.Add(this.label1);
@@ -90,6 +91,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button createHeroBtn;
         private System.Windows.Forms.Label lblNameHero;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_heroName;
     }
 }

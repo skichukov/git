@@ -22,7 +22,7 @@ namespace Game
         public RegistrationForm()
         {
             InitializeComponent();
-            us = c.GetService();
+            us = c.GetUserService();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

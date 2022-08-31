@@ -22,7 +22,7 @@ namespace Game
         public UpdateUserForm()
         {
             InitializeComponent();
-            us = c.GetService();
+            us = c.GetUserService();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace Game
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            current_user = us.GetCurrentUser();
+            current_user = c.GetCurrentUser();
             current_user.Name = txtBox_name.Text;
             current_user.Username = txtBox_username.Text;
             current_user.Password = txtBox_pass.Text;

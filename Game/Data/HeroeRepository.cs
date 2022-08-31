@@ -32,6 +32,35 @@ namespace Game.Data
             s.Close();
         }
 
+        public Character GetHeroById(int id)
+        {
+            s.Open();
+            string query = "Select [CharacterName], [AttackPoints], [DefencePoints]," +
+                " [HealthPoints], [DateCreated] from Characters where Id = @Id";
+            SqlCommand c = new SqlCommand(query, s);
+            c.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+            SqlDataReader r = c.ExecuteReader(CommandBehavior.CloseConnection);
+            if(r.HasRows)
+            {
+                while(r.Read())
+                {
+                    Character ch = new Character()
+                    {
+                        CharacterName = r.GetString(0),
+                        AttackPoints = r.GetInt32(1),
+                        DefencePoints = r.GetInt32(2),
+                        HealthPoints = r.GetInt32(3),
+                        DateCreated = r.GetDateTime(4)
+                    };
+
+                    return ch;
+                }
+            }
+
+            return new Character();
+        }
+
         public List<Character> GetUserCharacters(User user)
         {
             List<Character> characters = new List<Character>();
@@ -69,8 +98,18 @@ namespace Game.Data
         public void UpdateHero(Character ch)
         {
             s.Open();
-            string query = "Update Characters Set CharacterName = @CharacterName where Id = @Id";
+            string query = "Update Characters Set CharacterName = @CharacterName," +
+                " AttackPoints = @AttackPoints, DefencePoints = @DefencePoints," +
+                " HealthPoints = @HealthPoints where Id = @Id";
             SqlCommand command = new SqlCommand(query, s);
+            command.Parameters.Add("@CharacterName", SqlDbType.NVarChar).Value = ch.CharacterName;
+            command.Parameters.Add("@AttackPoints", SqlDbType.Int).Value = ch.AttackPoints;
+            command.Parameters.Add("@DefencePoints", SqlDbType.Int).Value = ch.DefencePoints;
+            command.Parameters.Add("@HealthPoints", SqlDbType.Int).Value = ch.HealthPoints;
+            command.Parameters.Add("@Id", SqlDbType.Int).Value = ch.Id;
+
+            object result = command.ExecuteNonQuery();
+            s.Close();
         }
 
         public void DeleteHero(int id)

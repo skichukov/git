@@ -19,7 +19,7 @@ namespace Game
         public LoginForm()
         {
             InitializeComponent();
-            us = c.GetService();
+            us = c.GetUserService();
         }
 
         private void loginBtn_Click(object sender, EventArgs e)

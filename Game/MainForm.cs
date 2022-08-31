@@ -23,8 +23,8 @@ namespace Game
         public MainForm()
         {
             InitializeComponent();
-            us = c.GetService();
-            loggedUser = us.GetCurrentUser();
+            us = c.GetUserService();
+            loggedUser = c.GetCurrentUser();
         }
 
         private void viewUsersTextBox_Click(object sender, EventArgs e)

@@ -34,9 +34,19 @@ namespace Game.Services
             heroRepository.CreateHero(ch);
         }
 
+        public Character GetHeroById(int id)
+        {
+            return heroRepository.GetHeroById(id);
+        }
+
         public List<Character> GetCharacters(User user)
         {
             return heroRepository.GetUserCharacters(user);
+        }
+
+        public void UpdateHero(Character ch)
+        {
+            heroRepository.UpdateHero(ch);
         }
 
         public void DeleteHero(int id)

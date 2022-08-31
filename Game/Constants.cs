@@ -1,4 +1,5 @@
-﻿using Game.Services;
+﻿using Game.Models;
+using Game.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,28 @@ namespace Game
     internal class Constants
     {
         private UserService us;
+        private HeroeService hs;
         private static Constants constants = new Constants();
 
         private Constants()
         {
             us = new UserService();
+            hs = new HeroeService();
         }
 
-        public UserService GetService()
+        public UserService GetUserService()
         {
             return us;
+        }
+
+        public HeroeService GetHeroeService()
+        {
+            return hs;
+        }
+
+        public User GetCurrentUser()
+        {
+            return us.GetCurrentUser();
         }
 
         public static Constants GetConstants()
