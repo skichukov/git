@@ -32,7 +32,7 @@ namespace Game
 
         public User GetCurrentUser()
         {
-            return us.GetCurrentUser();
+            return GetUserService().GetCurrentUser();
         }
 
         public static Constants GetConstants()

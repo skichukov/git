@@ -27,8 +27,12 @@ namespace Game
 
         private void createHeroBtn_Click(object sender, EventArgs e)
         {
+            Random r = new Random();
             int x_1, x_2, x_3;
-            //hs.InsertHero(textBox_heroName.Text, x_1, x_2, x_3, loggedUser);
+            x_1 = r.Next(0, 100);
+            x_2 = r.Next(0, 100 - x_1);
+            x_3 = 100 - (x_1 + x_2);
+            hs.InsertHero(textBox_heroName.Text, x_1, x_2, x_3, loggedUser);
             this.Hide();
         }
     }

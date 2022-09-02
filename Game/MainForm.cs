@@ -15,6 +15,7 @@ namespace Game
     public partial class MainForm : Form
     {
         List_Users lu = new List_Users();
+        List_Heroes lh = new List_Heroes();
         LoginForm lf = new LoginForm();
         Constants c = Constants.GetConstants();
         UserService us;
@@ -66,6 +67,12 @@ namespace Game
             }
             
             
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            lh.Show();
         }
     }
 }

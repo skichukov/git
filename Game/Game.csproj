@@ -80,6 +80,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GameDbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="List_Heroes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="List_Heroes.Designer.cs">
+      <DependentUpon>List_Heroes.cs</DependentUpon>
+    </Compile>
     <Compile Include="List_Users.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </Compile>
     <EmbeddedResource Include="CreateHero.resx">
       <DependentUpon>CreateHero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="List_Heroes.resx">
+      <DependentUpon>List_Heroes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="List_Users.resx">
       <DependentUpon>List_Users.cs</DependentUpon>

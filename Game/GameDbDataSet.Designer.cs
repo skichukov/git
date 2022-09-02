@@ -714,8 +714,6 @@ namespace Game {
             
             private global::System.Data.DataColumn columnCharacterName;
             
-            private global::System.Data.DataColumn columnTYPE;
-            
             private global::System.Data.DataColumn columnAttackPoints;
             
             private global::System.Data.DataColumn columnDefencePoints;
@@ -778,14 +776,6 @@ namespace Game {
             public global::System.Data.DataColumn CharacterNameColumn {
                 get {
                     return this.columnCharacterName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TYPEColumn {
-                get {
-                    return this.columnTYPE;
                 }
             }
             
@@ -858,13 +848,12 @@ namespace Game {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CHARACTERSRow AddCHARACTERSRow(USERSRow parentUSERSRowByCharacter_User, string CharacterName, string TYPE, int AttackPoints, int DefencePoints, int HealthPoints, System.DateTime DateCreated) {
+            public CHARACTERSRow AddCHARACTERSRow(USERSRow parentUSERSRowByCharacter_User, string CharacterName, int AttackPoints, int DefencePoints, int HealthPoints, System.DateTime DateCreated) {
                 CHARACTERSRow rowCHARACTERSRow = ((CHARACTERSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         CharacterName,
-                        TYPE,
                         AttackPoints,
                         DefencePoints,
                         HealthPoints,
@@ -904,7 +893,6 @@ namespace Game {
                 this.columnID = base.Columns["ID"];
                 this.columnUserId = base.Columns["UserId"];
                 this.columnCharacterName = base.Columns["CharacterName"];
-                this.columnTYPE = base.Columns["TYPE"];
                 this.columnAttackPoints = base.Columns["AttackPoints"];
                 this.columnDefencePoints = base.Columns["DefencePoints"];
                 this.columnHealthPoints = base.Columns["HealthPoints"];
@@ -920,8 +908,6 @@ namespace Game {
                 base.Columns.Add(this.columnUserId);
                 this.columnCharacterName = new global::System.Data.DataColumn("CharacterName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCharacterName);
-                this.columnTYPE = new global::System.Data.DataColumn("TYPE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTYPE);
                 this.columnAttackPoints = new global::System.Data.DataColumn("AttackPoints", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAttackPoints);
                 this.columnDefencePoints = new global::System.Data.DataColumn("DefencePoints", typeof(int), null, global::System.Data.MappingType.Element);
@@ -941,8 +927,6 @@ namespace Game {
                 this.columnUserId.AllowDBNull = false;
                 this.columnCharacterName.AllowDBNull = false;
                 this.columnCharacterName.MaxLength = 15;
-                this.columnTYPE.AllowDBNull = false;
-                this.columnTYPE.MaxLength = 15;
                 this.columnAttackPoints.AllowDBNull = false;
                 this.columnDefencePoints.AllowDBNull = false;
                 this.columnHealthPoints.AllowDBNull = false;
@@ -1545,17 +1529,6 @@ namespace Game {
                 }
                 set {
                     this[this.tableCHARACTERS.CharacterNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string TYPE {
-                get {
-                    return ((string)(this[this.tableCHARACTERS.TYPEColumn]));
-                }
-                set {
-                    this[this.tableCHARACTERS.TYPEColumn] = value;
                 }
             }
             
@@ -2285,7 +2258,6 @@ SELECT ID, UserId, WinnerId, LoserId, CreatedDate FROM BATTLES WHERE (ID = @ID)"
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("UserId", "UserId");
             tableMapping.ColumnMappings.Add("CharacterName", "CharacterName");
-            tableMapping.ColumnMappings.Add("TYPE", "TYPE");
             tableMapping.ColumnMappings.Add("AttackPoints", "AttackPoints");
             tableMapping.ColumnMappings.Add("DefencePoints", "DefencePoints");
             tableMapping.ColumnMappings.Add("HealthPoints", "HealthPoints");
@@ -2293,36 +2265,33 @@ SELECT ID, UserId, WinnerId, LoserId, CreatedDate FROM BATTLES WHERE (ID = @ID)"
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[CHARACTERS] WHERE (([ID] = @Original_ID) AND ([UserId] = @Original_UserId) AND ([CharacterName] = @Original_CharacterName) AND ([TYPE] = @Original_TYPE) AND ([AttackPoints] = @Original_AttackPoints) AND ([DefencePoints] = @Original_DefencePoints) AND ([HealthPoints] = @Original_HealthPoints) AND ([DateCreated] = @Original_DateCreated))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [CHARACTERS] WHERE (([ID] = @Original_ID) AND ([UserId] = @Original_UserId) AND ([CharacterName] = @Original_CharacterName) AND ([AttackPoints] = @Original_AttackPoints) AND ([DefencePoints] = @Original_DefencePoints) AND ([HealthPoints] = @Original_HealthPoints) AND ([DateCreated] = @Original_DateCreated))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CharacterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CharacterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TYPE", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AttackPoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AttackPoints", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DefencePoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DefencePoints", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HealthPoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HealthPoints", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[CHARACTERS] ([UserId], [CharacterName], [TYPE], [AttackPoints], [DefencePoints], [HealthPoints], [DateCreated]) VALUES (@UserId, @CharacterName, @TYPE, @AttackPoints, @DefencePoints, @HealthPoints, @DateCreated);
-SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoints, DateCreated FROM CHARACTERS WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [CHARACTERS] ([UserId], [CharacterName], [AttackPoints], [DefencePoints], [HealthPoints], [DateCreated]) VALUES (@UserId, @CharacterName, @AttackPoints, @DefencePoints, @HealthPoints, @DateCreated);
+SELECT ID, UserId, CharacterName, AttackPoints, DefencePoints, HealthPoints, DateCreated FROM CHARACTERS WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CharacterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CharacterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TYPE", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AttackPoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AttackPoints", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DefencePoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DefencePoints", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HealthPoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HealthPoints", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[CHARACTERS] SET [UserId] = @UserId, [CharacterName] = @CharacterName, [TYPE] = @TYPE, [AttackPoints] = @AttackPoints, [DefencePoints] = @DefencePoints, [HealthPoints] = @HealthPoints, [DateCreated] = @DateCreated WHERE (([ID] = @Original_ID) AND ([UserId] = @Original_UserId) AND ([CharacterName] = @Original_CharacterName) AND ([TYPE] = @Original_TYPE) AND ([AttackPoints] = @Original_AttackPoints) AND ([DefencePoints] = @Original_DefencePoints) AND ([HealthPoints] = @Original_HealthPoints) AND ([DateCreated] = @Original_DateCreated));
-SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoints, DateCreated FROM CHARACTERS WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [CHARACTERS] SET [UserId] = @UserId, [CharacterName] = @CharacterName, [AttackPoints] = @AttackPoints, [DefencePoints] = @DefencePoints, [HealthPoints] = @HealthPoints, [DateCreated] = @DateCreated WHERE (([ID] = @Original_ID) AND ([UserId] = @Original_UserId) AND ([CharacterName] = @Original_CharacterName) AND ([AttackPoints] = @Original_AttackPoints) AND ([DefencePoints] = @Original_DefencePoints) AND ([HealthPoints] = @Original_HealthPoints) AND ([DateCreated] = @Original_DateCreated));
+SELECT ID, UserId, CharacterName, AttackPoints, DefencePoints, HealthPoints, DateCreated FROM CHARACTERS WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CharacterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CharacterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TYPE", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AttackPoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AttackPoints", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DefencePoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DefencePoints", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HealthPoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HealthPoints", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2330,7 +2299,6 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CharacterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CharacterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TYPE", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AttackPoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AttackPoints", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DefencePoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DefencePoints", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HealthPoints", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HealthPoints", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -2351,17 +2319,19 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoints" +
-                ", DateCreated FROM dbo.CHARACTERS";
+            this._commandCollection[0].CommandText = "SELECT        ID, UserId, CharacterName, AttackPoints, DefencePoints, HealthPoint" +
+                "s, DateCreated\r\nFROM            CHARACTERS\r\nWHERE        (UserId = @UserId)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GameDbDataSet.CHARACTERSDataTable dataTable) {
+        public virtual int Fill(GameDbDataSet.CHARACTERSDataTable dataTable, int UserId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(UserId));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -2373,8 +2343,9 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GameDbDataSet.CHARACTERSDataTable GetData() {
+        public virtual GameDbDataSet.CHARACTERSDataTable GetData(int UserId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(UserId));
             GameDbDataSet.CHARACTERSDataTable dataTable = new GameDbDataSet.CHARACTERSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -2413,7 +2384,7 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_UserId, string Original_CharacterName, string Original_TYPE, int Original_AttackPoints, int Original_DefencePoints, int Original_HealthPoints, System.DateTime Original_DateCreated) {
+        public virtual int Delete(int Original_ID, int Original_UserId, string Original_CharacterName, int Original_AttackPoints, int Original_DefencePoints, int Original_HealthPoints, System.DateTime Original_DateCreated) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_UserId));
             if ((Original_CharacterName == null)) {
@@ -2422,16 +2393,10 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
             else {
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_CharacterName));
             }
-            if ((Original_TYPE == null)) {
-                throw new global::System.ArgumentNullException("Original_TYPE");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_TYPE));
-            }
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_AttackPoints));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_DefencePoints));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_HealthPoints));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_AttackPoints));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_DefencePoints));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_HealthPoints));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_DateCreated));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2452,7 +2417,7 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int UserId, string CharacterName, string TYPE, int AttackPoints, int DefencePoints, int HealthPoints, System.DateTime DateCreated) {
+        public virtual int Insert(int UserId, string CharacterName, int AttackPoints, int DefencePoints, int HealthPoints, System.DateTime DateCreated) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(UserId));
             if ((CharacterName == null)) {
                 throw new global::System.ArgumentNullException("CharacterName");
@@ -2460,16 +2425,10 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(CharacterName));
             }
-            if ((TYPE == null)) {
-                throw new global::System.ArgumentNullException("TYPE");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(TYPE));
-            }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(AttackPoints));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(DefencePoints));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(HealthPoints));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(AttackPoints));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(DefencePoints));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(HealthPoints));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(DateCreated));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2490,23 +2449,7 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int UserId, 
-                    string CharacterName, 
-                    string TYPE, 
-                    int AttackPoints, 
-                    int DefencePoints, 
-                    int HealthPoints, 
-                    System.DateTime DateCreated, 
-                    int Original_ID, 
-                    int Original_UserId, 
-                    string Original_CharacterName, 
-                    string Original_TYPE, 
-                    int Original_AttackPoints, 
-                    int Original_DefencePoints, 
-                    int Original_HealthPoints, 
-                    System.DateTime Original_DateCreated, 
-                    int ID) {
+        public virtual int Update(int UserId, string CharacterName, int AttackPoints, int DefencePoints, int HealthPoints, System.DateTime DateCreated, int Original_ID, int Original_UserId, string Original_CharacterName, int Original_AttackPoints, int Original_DefencePoints, int Original_HealthPoints, System.DateTime Original_DateCreated, int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(UserId));
             if ((CharacterName == null)) {
                 throw new global::System.ArgumentNullException("CharacterName");
@@ -2514,35 +2457,23 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(CharacterName));
             }
-            if ((TYPE == null)) {
-                throw new global::System.ArgumentNullException("TYPE");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(TYPE));
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(AttackPoints));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(DefencePoints));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(HealthPoints));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(DateCreated));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_UserId));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(AttackPoints));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(DefencePoints));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(HealthPoints));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_UserId));
             if ((Original_CharacterName == null)) {
                 throw new global::System.ArgumentNullException("Original_CharacterName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_CharacterName));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_CharacterName));
             }
-            if ((Original_TYPE == null)) {
-                throw new global::System.ArgumentNullException("Original_TYPE");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_TYPE));
-            }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_AttackPoints));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_DefencePoints));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_HealthPoints));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_DateCreated));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_AttackPoints));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_DefencePoints));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_HealthPoints));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2563,8 +2494,8 @@ SELECT ID, UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoint
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int UserId, string CharacterName, string TYPE, int AttackPoints, int DefencePoints, int HealthPoints, System.DateTime DateCreated, int Original_ID, int Original_UserId, string Original_CharacterName, string Original_TYPE, int Original_AttackPoints, int Original_DefencePoints, int Original_HealthPoints, System.DateTime Original_DateCreated) {
-            return this.Update(UserId, CharacterName, TYPE, AttackPoints, DefencePoints, HealthPoints, DateCreated, Original_ID, Original_UserId, Original_CharacterName, Original_TYPE, Original_AttackPoints, Original_DefencePoints, Original_HealthPoints, Original_DateCreated, Original_ID);
+        public virtual int Update(int UserId, string CharacterName, int AttackPoints, int DefencePoints, int HealthPoints, System.DateTime DateCreated, int Original_ID, int Original_UserId, string Original_CharacterName, int Original_AttackPoints, int Original_DefencePoints, int Original_HealthPoints, System.DateTime Original_DateCreated) {
+            return this.Update(UserId, CharacterName, AttackPoints, DefencePoints, HealthPoints, DateCreated, Original_ID, Original_UserId, Original_CharacterName, Original_AttackPoints, Original_DefencePoints, Original_HealthPoints, Original_DateCreated, Original_ID);
         }
     }
     
