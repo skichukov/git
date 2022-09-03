@@ -1,4 +1,5 @@
 ﻿using Game.Models;
+using Game.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,15 @@ namespace Game
     public partial class List_Heroes : Form
     {
         User loggedUser;
-        Constants c = Constants.GetConstants();
+        HeroeService hs;
+        Constants c = Constants.GetConstants(); 
+        int id;
 
         public List_Heroes()
         {
             InitializeComponent();
             loggedUser = c.GetCurrentUser();
+            hs = c.GetHeroeService();
         }
 
         private void cHARACTERSBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -52,6 +56,22 @@ namespace Game
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
+            if(this.cHARACTERSDataGridView.CurrentCell.ColumnIndex == 1)
+            {
+                id = (int) this.cHARACTERSDataGridView.CurrentCell.Value;
+                hs.DeleteHero(id);
+            }
+        }
+
+        private void renHeroBtn_Click(object sender, EventArgs e)
+        {     
+              UpdateHero uh = new UpdateHero();
+              uh.Show();
+            if (this.cHARACTERSDataGridView.CurrentCell.ColumnIndex == 1)
+            {
+                id = (int)this.cHARACTERSDataGridView.CurrentCell.Value;
+                uh.Print_Hero(id);
+            }
             
         }
     }

@@ -47,6 +47,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cHARACTERSBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.BtnBack = new System.Windows.Forms.ToolStripButton();
             this.cHARACTERSDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +56,8 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.renHeroBtn = new System.Windows.Forms.ToolStripButton();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gameDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cHARACTERSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cHARACTERSBindingNavigator)).BeginInit();
@@ -104,7 +106,8 @@
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.cHARACTERSBindingNavigatorSaveItem,
-            this.toolStripButton1});
+            this.BtnBack,
+            this.renHeroBtn});
             this.cHARACTERSBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.cHARACTERSBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.cHARACTERSBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -214,6 +217,16 @@
             this.cHARACTERSBindingNavigatorSaveItem.Visible = false;
             this.cHARACTERSBindingNavigatorSaveItem.Click += new System.EventHandler(this.cHARACTERSBindingNavigatorSaveItem_Click);
             // 
+            // BtnBack
+            // 
+            this.BtnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnBack.Image = ((System.Drawing.Image)(resources.GetObject("BtnBack.Image")));
+            this.BtnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(23, 22);
+            this.BtnBack.Text = "Към началния екран";
+            this.BtnBack.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // cHARACTERSDataGridView
             // 
             this.cHARACTERSDataGridView.AutoGenerateColumns = false;
@@ -282,21 +295,32 @@
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
-            // toolStripButton1
+            // renHeroBtn
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.renHeroBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.renHeroBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.renHeroBtn.Name = "renHeroBtn";
+            this.renHeroBtn.Size = new System.Drawing.Size(80, 22);
+            this.renHeroBtn.Text = "Редактиране";
+            this.renHeroBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.renHeroBtn.Click += new System.EventHandler(this.renHeroBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(291, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(188, 31);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Вашите герои";
             // 
             // List_Heroes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cHARACTERSDataGridView);
             this.Controls.Add(this.cHARACTERSBindingNavigator);
             this.Name = "List_Heroes";
@@ -340,6 +364,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton BtnBack;
+        private System.Windows.Forms.ToolStripButton renHeroBtn;
+        private System.Windows.Forms.Label label1;
     }
 }

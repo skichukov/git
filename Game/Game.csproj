@@ -118,6 +118,12 @@
     <Compile Include="Services\HeroeService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="UpdateHero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateHero.Designer.cs">
+      <DependentUpon>UpdateHero.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UpdateHero.resx">
+      <DependentUpon>UpdateHero.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateUserForm.resx">
       <DependentUpon>UpdateUserForm.cs</DependentUpon>
     </EmbeddedResource>
