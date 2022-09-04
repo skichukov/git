@@ -15,7 +15,6 @@ namespace Game
     public partial class MainForm : Form
     {
         List_Users lu = new List_Users();
-        List_Heroes lh = new List_Heroes();
         LoginForm lf = new LoginForm();
         Constants c = Constants.GetConstants();
         UserService us;
@@ -26,6 +25,7 @@ namespace Game
             InitializeComponent();
             us = c.GetUserService();
             loggedUser = c.GetCurrentUser();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(SetCloseOperation);
         }
 
         private void viewUsersTextBox_Click(object sender, EventArgs e)
@@ -65,14 +65,18 @@ namespace Game
                 this.Hide();
                 lf.Show();
             }
-            
-            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            List_Heroes lh = new List_Heroes();
             this.Hide();
             lh.Show();
+        }
+
+        private void SetCloseOperation(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

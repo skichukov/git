@@ -44,7 +44,11 @@ namespace Game
         {
             Character hero = new Character
             {
-                Id = GetId_Hero()
+                Id = GetId_Hero(),
+                CharacterName = heroNameBox.Text,
+                AttackPoints = (int)attackpUpDown.Value,
+                DefencePoints = (int)defpUpDown.Value,
+                HealthPoints = (int)healthpUpDown.Value
             };
 
             hs.UpdateHero(hero);

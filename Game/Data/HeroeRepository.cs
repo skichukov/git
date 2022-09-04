@@ -58,6 +58,7 @@ namespace Game.Data
                 }
             }
 
+            s.Close();
             return new Character();
         }
 

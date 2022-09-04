@@ -20,6 +20,7 @@ namespace Game
         {
             InitializeComponent();
             us = c.GetUserService();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(SetCloseOperation);
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
@@ -52,6 +53,11 @@ namespace Game
             RegistrationForm rf = new RegistrationForm();
             this.Hide();
             rf.Show();
+        }
+
+        private void SetCloseOperation(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

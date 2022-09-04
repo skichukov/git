@@ -23,6 +23,7 @@ namespace Game
         {
             InitializeComponent();
             us = c.GetUserService();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(SetCloseOperation);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -48,6 +49,11 @@ namespace Game
             {
                 MessageBox.Show("Въведете еднакви пароли!");
             }
+        }
+
+        private void SetCloseOperation(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

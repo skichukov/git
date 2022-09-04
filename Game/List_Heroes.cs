@@ -38,6 +38,7 @@ namespace Game
         {
             // TODO: This line of code loads data into the 'gameDbDataSet.CHARACTERS' table. You can move, or remove it, as needed.
             this.cHARACTERSTableAdapter.Fill(this.gameDbDataSet.CHARACTERS, loggedUser.Id);
+            this.cHARACTERSTableAdapter.Connection.Close();
 
         }
 
@@ -56,7 +57,7 @@ namespace Game
 
         private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
         {
-            if(this.cHARACTERSDataGridView.CurrentCell.ColumnIndex == 1)
+            if(this.cHARACTERSDataGridView.CurrentCell.ColumnIndex == 0)
             {
                 id = (int) this.cHARACTERSDataGridView.CurrentCell.Value;
                 hs.DeleteHero(id);
@@ -65,10 +66,10 @@ namespace Game
 
         private void renHeroBtn_Click(object sender, EventArgs e)
         {     
-              UpdateHero uh = new UpdateHero();
-              uh.Show();
-            if (this.cHARACTERSDataGridView.CurrentCell.ColumnIndex == 1)
+            if (this.cHARACTERSDataGridView.CurrentCell.ColumnIndex == 0)
             {
+                UpdateHero uh = new UpdateHero();
+                uh.Show();
                 id = (int)this.cHARACTERSDataGridView.CurrentCell.Value;
                 uh.Print_Hero(id);
             }
