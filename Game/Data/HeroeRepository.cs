@@ -54,11 +54,11 @@ namespace Game.Data
                         DateCreated = r.GetDateTime(4)
                     };
 
+                    r.Close();
                     return ch;
                 }
             }
-
-            s.Close();
+            
             return new Character();
         }
 
