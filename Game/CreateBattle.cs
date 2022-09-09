@@ -12,14 +12,13 @@ using System.Windows.Forms;
 
 namespace Game
 {
-    public partial class List_Heroes : Form
+    public partial class CreateBattle : Form
     {
         User loggedUser;
         HeroeService hs;
-        Constants c = Constants.GetConstants(); 
-        int id;
+        Constants c = Constants.GetConstants();
 
-        public List_Heroes()
+        public CreateBattle()
         {
             InitializeComponent();
             loggedUser = c.GetCurrentUser();
@@ -42,7 +41,6 @@ namespace Game
 
         private void List_Heroes_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gameDbDataSet.CHARACTERS' table. You can move, or remove it, as needed.
             this.cHARACTERSTableAdapter.Fill(this.gameDbDataSet.CHARACTERS, loggedUser.Id);
             this.cHARACTERSTableAdapter.Connection.Close();
 
@@ -55,31 +53,18 @@ namespace Game
             mf.Show();
         }
 
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        private void btnCreate_Click(object sender, EventArgs e)
         {
-            CreateHero ch = new CreateHero();
-            ch.Show();
-        }
+            Character hero_1 = hs.GetHeroById((int)iDComboBox.SelectedValue);
+            Character hero_2 = hs.GetHeroById((int)iDComboBox1.SelectedValue);
+            Random r = new Random();
 
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            if(this.cHARACTERSDataGridView.CurrentCell.ColumnIndex == 0)
+            while((hero_1.HealthPoints > 0) && (hero_2.HealthPoints > 0))
             {
-                id = (int) this.cHARACTERSDataGridView.CurrentCell.Value;
-                hs.DeleteHero(id);
-            }
-        }
-
-        private void renHeroBtn_Click(object sender, EventArgs e)
-        {     
-            if (this.cHARACTERSDataGridView.CurrentCell.ColumnIndex == 0)
-            {
-                UpdateHero uh = new UpdateHero();
-                uh.Show();
-                id = (int)this.cHARACTERSDataGridView.CurrentCell.Value;
-                uh.Print_Hero(id);
-            }
-            
+                int rand = r.Next(-5, 5);
+                int new_attack = hero_1.AttackPoints + rand;
+                hero_1.AttackPoints = new_attack;
+            } 
         }
     }
 }

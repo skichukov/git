@@ -63,6 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="CreateBattle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateBattle.Designer.cs">
+      <DependentUpon>CreateBattle.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateHero.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,7 @@
     </Compile>
     <Compile Include="Models\Battle.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Round.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="RegistrationForm.cs">
       <SubType>Form</SubType>
@@ -130,6 +137,9 @@
     <Compile Include="UpdateUserForm.Designer.cs">
       <DependentUpon>UpdateUserForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CreateBattle.resx">
+      <DependentUpon>CreateBattle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateHero.resx">
       <DependentUpon>CreateHero.cs</DependentUpon>
     </EmbeddedResource>

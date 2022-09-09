@@ -78,5 +78,12 @@ namespace Game
         {
             Environment.Exit(0);
         }
+
+        private void CreateBattleLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CreateBattle cb = new CreateBattle();
+            this.Hide();
+            cb.Show();
+        }
     }
 }
