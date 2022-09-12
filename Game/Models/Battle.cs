@@ -15,7 +15,7 @@ namespace Game.Models
         public int UserId { get; set; }
         public int WinnerId { get; set; }
         public int LoserId { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         [ForeignKey("UserId")]
         public User Organiser { get; set; }

@@ -12,12 +12,14 @@ namespace Game
     {
         private UserService us;
         private HeroeService hs;
+        private BattleService bs;
         private static Constants constants = new Constants();
 
         private Constants()
         {
             us = new UserService();
             hs = new HeroeService();
+            bs = new BattleService();
         }
 
         public UserService GetUserService()
@@ -30,9 +32,19 @@ namespace Game
             return hs;
         }
 
+        public BattleService GetBattleService()
+        {
+            return bs;
+        }
+
         public User GetCurrentUser()
         {
             return GetUserService().GetCurrentUser();
+        }
+
+        public Battle GetLatestBattle()
+        {
+            return GetBattleService().GetLatestBattle();
         }
 
         public static Constants GetConstants()

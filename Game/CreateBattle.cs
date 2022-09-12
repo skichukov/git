@@ -16,6 +16,7 @@ namespace Game
     {
         User loggedUser;
         HeroeService hs;
+        BattleService bs;
         Constants c = Constants.GetConstants();
 
         public CreateBattle()
@@ -23,6 +24,7 @@ namespace Game
             InitializeComponent();
             loggedUser = c.GetCurrentUser();
             hs = c.GetHeroeService();
+            bs = c.GetBattleService();
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(SetCloseOperation);
         }
 
@@ -73,17 +75,15 @@ namespace Game
             Character hero_1 = hs.GetHeroById((int)iDComboBox.SelectedValue);
             Character hero_2 = hs.GetHeroById((int)iDComboBox1.SelectedValue);
             Random r = new Random();
+            List<Round> rounds = new List<Round>();
             int health_upd;
-
-            Battle b = new Battle
-            {
-                UserId = loggedUser.Id,
-                DateCreated = DateTime.Now,
-                Organiser = loggedUser
-            };
+            string[] sarray;
+            string info;
+            int i = 0;
 
             while((hero_1.HealthPoints > 0) && (hero_2.HealthPoints > 0))
             {
+                i++;
                 int rand = r.Next(-5, 5);
                 int new_attack = hero_1.AttackPoints + rand;
                 hero_1.AttackPoints = new_attack;
@@ -92,21 +92,53 @@ namespace Game
                 {
                     health_upd = hero_2.HealthPoints - difference;
                     hero_2.HealthPoints = health_upd;
-                    MessageBox.Show("Атаката на " + hero_1.CharacterName + " става " 
-                        + hero_1.AttackPoints +  " Защитата на " + hero_2.CharacterName + 
-                        " e " + hero_2.DefencePoints);
+                    sarray = new string[] { 
+                        "Атаката на " + hero_1.CharacterName + " става "
+                        + hero_1.AttackPoints, "Защитата на " + hero_2.CharacterName +
+                        " e " + hero_2.DefencePoints,
+                        hero_1.CharacterName + " остава с кръв " + hero_1.HealthPoints + 
+                         ", а " + hero_2.CharacterName + " - с " + hero_2.HealthPoints
+                    };
+
+                    info = String.Join("\n", sarray);
+                    MessageBox.Show(info);
                 }
                 else
                 {
                     health_upd = hero_1.HealthPoints - difference;
                     hero_1.HealthPoints = health_upd;
-                    MessageBox.Show("Атаката на " + hero_1.CharacterName + " става "
-                        + hero_1.AttackPoints + " Защитата на " + hero_2.CharacterName +
-                        " e " + hero_2.DefencePoints);
+                    sarray = new string[] {
+                        "Атаката на " + hero_1.CharacterName + " става "
+                        + hero_1.AttackPoints, "Защитата на " + hero_2.CharacterName +
+                        " e " + hero_2.DefencePoints,
+                        hero_1.CharacterName + " остава с кръв " + hero_1.HealthPoints +
+                         ", а " + hero_2.CharacterName + " - с " + hero_2.HealthPoints
+                    };
+
+                    info = String.Join("\n", sarray);
+                    MessageBox.Show(info);
                 }
+
+                Round round = new Round
+                {
+                    Character1State = hero_1.HealthPoints,
+                    Character2State = hero_2.HealthPoints,
+                    RoundIndex = i,
+                    RandomNumber = rand,
+                    //ParrentBattle = b
+                };
+
+                rounds.Add(round);
             }
 
-            _ = (hero_1.HealthPoints > 0) ? (b.Winner = hero_1, b.Loser = hero_2) : (b.Winner = hero_2, b.Loser = hero_1);
+            if (hero_1.HealthPoints > 0) {
+                bs.InserBattle(loggedUser, hero_1, hero_2);
+            }
+            else
+            {
+                bs.InserBattle(loggedUser, hero_2, hero_1);
+            }
+                
         }
     }
 }
