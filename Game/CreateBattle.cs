@@ -17,6 +17,7 @@ namespace Game
         User loggedUser;
         HeroeService hs;
         BattleService bs;
+        RoundService rs;
         Constants c = Constants.GetConstants();
 
         public CreateBattle()
@@ -25,6 +26,7 @@ namespace Game
             loggedUser = c.GetCurrentUser();
             hs = c.GetHeroeService();
             bs = c.GetBattleService();
+            rs = c.GetRoundService();
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(SetCloseOperation);
         }
 
@@ -75,7 +77,6 @@ namespace Game
             Character hero_1 = hs.GetHeroById((int)iDComboBox.SelectedValue);
             Character hero_2 = hs.GetHeroById((int)iDComboBox1.SelectedValue);
             Random r = new Random();
-            List<Round> rounds = new List<Round>();
             int health_upd;
             string[] sarray;
             string info;
@@ -119,16 +120,7 @@ namespace Game
                     MessageBox.Show(info);
                 }
 
-                Round round = new Round
-                {
-                    Character1State = hero_1.HealthPoints,
-                    Character2State = hero_2.HealthPoints,
-                    RoundIndex = i,
-                    RandomNumber = rand,
-                    //ParrentBattle = b
-                };
-
-                rounds.Add(round);
+                rs.AddRoundToList(hero_1.HealthPoints, hero_2.HealthPoints, i, rand);
             }
 
             if (hero_1.HealthPoints > 0) {
@@ -137,6 +129,13 @@ namespace Game
             else
             {
                 bs.InserBattle(loggedUser, hero_2, hero_1);
+            }
+
+            Battle b = c.GetLatestBattle();
+            List<Round> rounds = c.GetLocalRounds();
+            for(int j = 0; j < rounds.Count; j++)
+            {
+                
             }
                 
         }

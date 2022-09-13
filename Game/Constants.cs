@@ -13,6 +13,7 @@ namespace Game
         private UserService us;
         private HeroeService hs;
         private BattleService bs;
+        private RoundService rs;
         private static Constants constants = new Constants();
 
         private Constants()
@@ -20,6 +21,7 @@ namespace Game
             us = new UserService();
             hs = new HeroeService();
             bs = new BattleService();
+            rs = new RoundService();
         }
 
         public UserService GetUserService()
@@ -37,6 +39,11 @@ namespace Game
             return bs;
         }
 
+        public RoundService GetRoundService()
+        {
+            return rs;
+        }
+
         public User GetCurrentUser()
         {
             return GetUserService().GetCurrentUser();
@@ -45,6 +52,11 @@ namespace Game
         public Battle GetLatestBattle()
         {
             return GetBattleService().GetLatestBattle();
+        }
+
+        public List<Round> GetLocalRounds()
+        {
+            return GetRoundService().GetLocalRounds();
         }
 
         public static Constants GetConstants()
