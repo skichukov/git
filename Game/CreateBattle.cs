@@ -135,9 +135,28 @@ namespace Game
             List<Round> rounds = c.GetLocalRounds();
             for(int j = 0; j < rounds.Count; j++)
             {
-                
+                bool HasRound(Round r1)
+                {
+                    r1.RoundIndex = j;
+
+                    if (rounds.Contains(r1))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                Predicate<Round> match = new Predicate<Round>(HasRound);
+                Round r2 = rounds.Find(match);
+                rs.InsertRound(r2.Character1State, r2.Character2State, r2.RoundIndex,
+                    r2.RandomNumber, b);
             }
-                
+
+            rounds.Clear();
+            rs.Clear();
         }
     }
 }
