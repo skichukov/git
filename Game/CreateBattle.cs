@@ -77,7 +77,6 @@ namespace Game
             Character hero_1 = hs.GetHeroById((int)iDComboBox.SelectedValue);
             Character hero_2 = hs.GetHeroById((int)iDComboBox1.SelectedValue);
             Random r = new Random();
-            int health_upd;
             string[] sarray;
             string info;
             int i = 0;
@@ -86,13 +85,11 @@ namespace Game
             {
                 i++;
                 int rand = r.Next(-5, 5);
-                int new_attack = hero_1.AttackPoints + rand;
-                hero_1.AttackPoints = new_attack;
+                hero_1.AttackPoints += rand;
                 int difference = abs(hero_1.AttackPoints - hero_2.DefencePoints);
                 if(hero_1.AttackPoints > hero_2.DefencePoints)
                 {
-                    health_upd = hero_2.HealthPoints - difference;
-                    hero_2.HealthPoints = health_upd;
+                    hero_2.HealthPoints -= difference;
                     sarray = new string[] { 
                         "Атаката на " + hero_1.CharacterName + " става "
                         + hero_1.AttackPoints, "Защитата на " + hero_2.CharacterName +
@@ -106,8 +103,7 @@ namespace Game
                 }
                 else
                 {
-                    health_upd = hero_1.HealthPoints - difference;
-                    hero_1.HealthPoints = health_upd;
+                    hero_1.HealthPoints -= difference;
                     sarray = new string[] {
                         "Атаката на " + hero_1.CharacterName + " става "
                         + hero_1.AttackPoints, "Защитата на " + hero_2.CharacterName +
@@ -124,11 +120,17 @@ namespace Game
             }
 
             if (hero_1.HealthPoints > 0) {
+                hero_2.HealthPoints = 0;
                 bs.InserBattle(loggedUser, hero_1, hero_2);
+                hs.UpdateHero(hero_1);
+                hs.UpdateHero(hero_2);
             }
             else
             {
+                hero_1.HealthPoints = 0;
                 bs.InserBattle(loggedUser, hero_2, hero_1);
+                hs.UpdateHero(hero_1);
+                hs.UpdateHero(hero_2);
             }
 
             Battle b = c.GetLatestBattle();
@@ -155,7 +157,6 @@ namespace Game
                     r2.RandomNumber, b);
             }
 
-            rounds.Clear();
             rs.Clear();
         }
     }

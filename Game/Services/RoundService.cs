@@ -12,13 +12,11 @@ namespace Game.Services
     {
         private RoundRepository roundRep;
         private List<Round> rounds;
-        private Round r;
 
         public RoundService()
         {
             roundRep = new RoundRepository();
             rounds = new List<Round>();
-            r = new Round();
         }
 
         public void InsertRound(int p1, int p2, int i, int rand, Battle b)
@@ -58,23 +56,6 @@ namespace Game.Services
         public void Clear()
         {
             rounds.Clear();
-        }
-
-        public Round GetRound()
-        {
-            return r;
-        }
-
-        public bool HasRound(Round r)
-        {
-            if (rounds.Contains(r))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 }

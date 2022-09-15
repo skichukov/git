@@ -85,5 +85,12 @@ namespace Game
             this.Hide();
             cb.Show();
         }
+
+        private void ViewBattlesLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            List_Battles lb = new List_Battles();
+            this.Hide();
+            lb.Show();
+        }
     }
 }

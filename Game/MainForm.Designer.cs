@@ -181,6 +181,7 @@
             this.ViewBattlesLink.TabIndex = 5;
             this.ViewBattlesLink.TabStop = true;
             this.ViewBattlesLink.Text = "Списък от битките Ви";
+            this.ViewBattlesLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ViewBattlesLink_LinkClicked);
             // 
             // MainForm
             // 
