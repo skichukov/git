@@ -61,5 +61,33 @@ namespace Game.Data
         {
             return latestBattle;
         }
+
+        public Battle GetBattleById(int id)
+        {
+            s.Open();
+            string query = "Select [WinnerId], [LoserId], [CreatedDate] from Characters " +
+                "where Id = @Id";
+            SqlCommand c = new SqlCommand(query, s);
+            c.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+            SqlDataReader r = c.ExecuteReader(CommandBehavior.CloseConnection);
+            if(r.HasRows)
+            {
+                while(r.Read())
+                {
+                    Battle b = new Battle
+                    {
+                        WinnerId = r.GetInt32(0),
+                        LoserId = r.GetInt32(1),
+                        CreatedDate = r.GetDateTime(2)
+                    };
+
+                    r.Close();
+                    return b;
+                }
+            }
+
+            return new Battle();
+        }
     }
 }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateBattle));
             System.Windows.Forms.Label iDLabel;
             System.Windows.Forms.Label iDLabel1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateBattle));
             this.btnCreate = new System.Windows.Forms.Button();
             this.gameDbDataSet = new Game.GameDbDataSet();
             this.cHARACTERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -50,6 +50,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cHARACTERSBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.BtnBack = new System.Windows.Forms.ToolStripButton();
             this.cHARACTERSDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,7 +65,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.BtnBack = new System.Windows.Forms.ToolStripButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             iDLabel = new System.Windows.Forms.Label();
             iDLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gameDbDataSet)).BeginInit();
@@ -73,6 +74,24 @@
             this.cHARACTERSBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cHARACTERSDataGridView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // iDLabel
+            // 
+            iDLabel.AutoSize = true;
+            iDLabel.Location = new System.Drawing.Point(49, 246);
+            iDLabel.Name = "iDLabel";
+            iDLabel.Size = new System.Drawing.Size(21, 13);
+            iDLabel.TabIndex = 3;
+            iDLabel.Text = "ID:";
+            // 
+            // iDLabel1
+            // 
+            iDLabel1.AutoSize = true;
+            iDLabel1.Location = new System.Drawing.Point(258, 246);
+            iDLabel1.Name = "iDLabel1";
+            iDLabel1.Size = new System.Drawing.Size(21, 13);
+            iDLabel1.TabIndex = 5;
+            iDLabel1.Text = "ID:";
             // 
             // btnCreate
             // 
@@ -235,6 +254,16 @@
             this.cHARACTERSBindingNavigatorSaveItem.Text = "Save Data";
             this.cHARACTERSBindingNavigatorSaveItem.Click += new System.EventHandler(this.cHARACTERSBindingNavigatorSaveItem_Click);
             // 
+            // BtnBack
+            // 
+            this.BtnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnBack.Image = ((System.Drawing.Image)(resources.GetObject("BtnBack.Image")));
+            this.BtnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(23, 22);
+            this.BtnBack.Text = "Към началния екран";
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            // 
             // cHARACTERSDataGridView
             // 
             this.cHARACTERSDataGridView.AutoGenerateColumns = false;
@@ -301,15 +330,6 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.Visible = false;
             // 
-            // iDLabel
-            // 
-            iDLabel.AutoSize = true;
-            iDLabel.Location = new System.Drawing.Point(49, 246);
-            iDLabel.Name = "iDLabel";
-            iDLabel.Size = new System.Drawing.Size(21, 13);
-            iDLabel.TabIndex = 3;
-            iDLabel.Text = "ID:";
-            // 
             // iDComboBox
             // 
             this.iDComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cHARACTERSBindingSource, "ID", true));
@@ -318,15 +338,6 @@
             this.iDComboBox.Name = "iDComboBox";
             this.iDComboBox.Size = new System.Drawing.Size(121, 21);
             this.iDComboBox.TabIndex = 4;
-            // 
-            // iDLabel1
-            // 
-            iDLabel1.AutoSize = true;
-            iDLabel1.Location = new System.Drawing.Point(258, 246);
-            iDLabel1.Name = "iDLabel1";
-            iDLabel1.Size = new System.Drawing.Size(21, 13);
-            iDLabel1.TabIndex = 5;
-            iDLabel1.Text = "ID:";
             // 
             // iDComboBox1
             // 
@@ -377,15 +388,10 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Избери 2 опонента измежду героите:";
             // 
-            // BtnBack
+            // timer1
             // 
-            this.BtnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnBack.Image = ((System.Drawing.Image)(resources.GetObject("BtnBack.Image")));
-            this.BtnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnBack.Name = "BtnBack";
-            this.BtnBack.Size = new System.Drawing.Size(23, 22);
-            this.BtnBack.Text = "Към началния екран";
-            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_tick);
             // 
             // CreateBattle
             // 
@@ -452,5 +458,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripButton BtnBack;
+        private System.Windows.Forms.Timer timer1;
     }
 }

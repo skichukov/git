@@ -18,7 +18,10 @@ namespace Game
         HeroeService hs;
         BattleService bs;
         RoundService rs;
+        DialogResult dr;
         Constants c = Constants.GetConstants();
+        string[] sarray;
+        string info;
 
         public CreateBattle()
         {
@@ -77,8 +80,6 @@ namespace Game
             Character hero_1 = hs.GetHeroById((int)iDComboBox.SelectedValue);
             Character hero_2 = hs.GetHeroById((int)iDComboBox1.SelectedValue);
             Random r = new Random();
-            string[] sarray;
-            string info;
             int i = 0;
 
             while((hero_1.HealthPoints > 0) && (hero_2.HealthPoints > 0))
@@ -100,6 +101,8 @@ namespace Game
 
                     info = String.Join("\n", sarray);
                     MessageBox.Show(info);
+                    dr = MessageBox.Show(info);
+                    timer1.Start();
                 }
                 else
                 {
@@ -114,6 +117,8 @@ namespace Game
 
                     info = String.Join("\n", sarray);
                     MessageBox.Show(info);
+                    dr = MessageBox.Show(info);
+                    timer1.Start();
                 }
 
                 rs.AddRoundToList(hero_1.HealthPoints, hero_2.HealthPoints, i, rand);
@@ -158,6 +163,12 @@ namespace Game
             }
 
             rs.Clear();
+        }
+
+        private void timer1_tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            dr = DialogResult.Cancel;
         }
     }
 }

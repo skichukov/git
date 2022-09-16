@@ -38,5 +38,10 @@ namespace Game.Services
         {
             return battleRep.GetLatestBattle();
         }
+
+        public Battle GetBattleById(int id)
+        {
+            return battleRep.GetBattleById(id);
+        }
     }
 }

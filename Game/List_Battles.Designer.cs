@@ -53,6 +53,10 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnBack = new System.Windows.Forms.ToolStripButton();
+            this.seeDetails_Btn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.lessDetailsTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.moreDetailsTextBox = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gameDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bATTLESBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bATTLESBindingNavigator)).BeginInit();
@@ -100,7 +104,9 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.bATTLESBindingNavigatorSaveItem});
+            this.bATTLESBindingNavigatorSaveItem,
+            this.BtnBack,
+            this.seeDetails_Btn});
             this.bATTLESBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.bATTLESBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bATTLESBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -260,6 +266,45 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "CreatedDate";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
+            // BtnBack
+            // 
+            this.BtnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnBack.Image = ((System.Drawing.Image)(resources.GetObject("BtnBack.Image")));
+            this.BtnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(23, 22);
+            this.BtnBack.Text = "Към началния екран";
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            // 
+            // seeDetails_Btn
+            // 
+            this.seeDetails_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.seeDetails_Btn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lessDetailsTextBox,
+            this.moreDetailsTextBox});
+            this.seeDetails_Btn.Image = ((System.Drawing.Image)(resources.GetObject("seeDetails_Btn.Image")));
+            this.seeDetails_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.seeDetails_Btn.Name = "seeDetails_Btn";
+            this.seeDetails_Btn.Size = new System.Drawing.Size(119, 22);
+            this.seeDetails_Btn.Text = "Виж подробности";
+            // 
+            // lessDetailsTextBox
+            // 
+            this.lessDetailsTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lessDetailsTextBox.Name = "lessDetailsTextBox";
+            this.lessDetailsTextBox.ReadOnly = true;
+            this.lessDetailsTextBox.Size = new System.Drawing.Size(125, 23);
+            this.lessDetailsTextBox.Text = "В кратка форма";
+            this.lessDetailsTextBox.Click += new System.EventHandler(this.lessDetailsTextBox_Click);
+            // 
+            // moreDetailsTextBox
+            // 
+            this.moreDetailsTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.moreDetailsTextBox.Name = "moreDetailsTextBox";
+            this.moreDetailsTextBox.ReadOnly = true;
+            this.moreDetailsTextBox.Size = new System.Drawing.Size(125, 23);
+            this.moreDetailsTextBox.Text = "Повече подробности";
+            // 
             // List_Battles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,5 +351,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.ToolStripButton BtnBack;
+        private System.Windows.Forms.ToolStripDropDownButton seeDetails_Btn;
+        private System.Windows.Forms.ToolStripTextBox lessDetailsTextBox;
+        private System.Windows.Forms.ToolStripTextBox moreDetailsTextBox;
     }
 }
