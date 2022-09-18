@@ -21,8 +21,8 @@ namespace Game.Data
                 " values(@UserId, @WinnerId, @LoserId, @CreatedDate)";
             SqlCommand command = new SqlCommand(query, s);
             command.Parameters.Add("@UserId", SqlDbType.Int).Value = b.UserId;
-            command.Parameters.Add("@WinnerId", SqlDbType.Int).Value = b.Winner.Id;
-            command.Parameters.Add("@LoserId", SqlDbType.Int).Value = b.Loser.Id;
+            command.Parameters.Add("@WinnerId", SqlDbType.Int).Value = b.WinnerId;
+            command.Parameters.Add("@LoserId", SqlDbType.Int).Value = b.LoserId;
             command.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = b.CreatedDate;
 
             object result = command.ExecuteNonQuery();
@@ -32,8 +32,8 @@ namespace Game.Data
         public void SetLatestBattle(Battle b)
         {
             s.Open();
-            string query = "Select * from Battles" +
-                " where WinnerId = @WinnerId, LoserId = @LoserId, CreatedDate = @CreatedDate";
+            string query = "Select * from Battles where WinnerId = @WinnerId and" +
+                " LoserId = @LoserId and CreatedDate = @CreatedDate";
             SqlCommand command = new SqlCommand(query, s);
             command.Parameters.Add("@WinnerId", SqlDbType.Int).Value = b.WinnerId;
             command.Parameters.Add("@LoserId", SqlDbType.Int).Value = b.LoserId;
@@ -65,7 +65,7 @@ namespace Game.Data
         public Battle GetBattleById(int id)
         {
             s.Open();
-            string query = "Select [WinnerId], [LoserId], [CreatedDate] from Characters " +
+            string query = "Select [WinnerId], [LoserId], [CreatedDate] from Battles " +
                 "where Id = @Id";
             SqlCommand c = new SqlCommand(query, s);
             c.Parameters.Add("@Id", SqlDbType.Int).Value = id;
@@ -87,6 +87,7 @@ namespace Game.Data
                 }
             }
 
+            r.Close();
             return new Battle();
         }
     }

@@ -47,6 +47,7 @@ namespace Game.Data
                 {
                     Character ch = new Character()
                     {
+                        Id = id,
                         CharacterName = r.GetString(0),
                         AttackPoints = r.GetInt32(1),
                         DefencePoints = r.GetInt32(2),
@@ -58,7 +59,8 @@ namespace Game.Data
                     return ch;
                 }
             }
-            
+
+            r.Close();
             return new Character();
         }
 

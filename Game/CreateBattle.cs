@@ -49,6 +49,16 @@ namespace Game
         private void List_Heroes_Load(object sender, EventArgs e)
         {
             this.cHARACTERSTableAdapter.Fill(this.gameDbDataSet.CHARACTERS, loggedUser.Id);
+            GameDbDataSet.CHARACTERSDataTable dtbl = this.cHARACTERSTableAdapter
+                .GetData(loggedUser.Id);
+            for(int k = 0; k < dtbl.Rows.Count; k++)
+            {
+                iDComboBox.Items.Add(dtbl.ElementAt<GameDbDataSet.CHARACTERSRow>(k)
+                .Field<int>(dtbl.IDColumn));
+                iDComboBox1.Items.Add(dtbl.ElementAt<GameDbDataSet.CHARACTERSRow>(k)
+                .Field<int>(dtbl.IDColumn));
+            }
+            
             this.cHARACTERSTableAdapter.Connection.Close();
 
         }
@@ -77,8 +87,8 @@ namespace Game
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            Character hero_1 = hs.GetHeroById((int)iDComboBox.SelectedValue);
-            Character hero_2 = hs.GetHeroById((int)iDComboBox1.SelectedValue);
+            Character hero_1 = hs.GetHeroById((int)iDComboBox.SelectedItem);
+            Character hero_2 = hs.GetHeroById((int)iDComboBox1.SelectedItem);
             Random r = new Random();
             int i = 0;
 
@@ -100,7 +110,6 @@ namespace Game
                     };
 
                     info = String.Join("\n", sarray);
-                    MessageBox.Show(info);
                     dr = MessageBox.Show(info);
                     timer1.Start();
                 }
@@ -116,7 +125,6 @@ namespace Game
                     };
 
                     info = String.Join("\n", sarray);
-                    MessageBox.Show(info);
                     dr = MessageBox.Show(info);
                     timer1.Start();
                 }
@@ -168,7 +176,7 @@ namespace Game
         private void timer1_tick(object sender, EventArgs e)
         {
             timer1.Stop();
-            dr = DialogResult.Cancel;
+            dr = DialogResult.OK;
         }
     }
 }

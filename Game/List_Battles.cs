@@ -48,6 +48,7 @@ namespace Game
         {
             // TODO: This line of code loads data into the 'gameDbDataSet.BATTLES' table. You can move, or remove it, as needed.
             this.bATTLESTableAdapter.Fill(this.gameDbDataSet.BATTLES, loggedUser.Id);
+            this.bATTLESTableAdapter.Connection.Close();
 
         }
 
