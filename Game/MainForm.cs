@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -61,9 +62,14 @@ namespace Game
             if(MessageBox.Show("Сигурни ли сте, че искате да изтриете профила си?",
                "Изисква се потвърждение", MessageBoxButtons.YesNo) == DialogResult.Yes) 
             {
-                us.DeleteUser(loggedUser);
-                this.Hide();
-                lf.Show();
+                try { 
+                    us.DeleteUser(loggedUser);
+                    this.Hide();
+                    lf.Show();
+                } catch(SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

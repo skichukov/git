@@ -48,7 +48,8 @@ namespace Game
 
         private void List_Heroes_Load(object sender, EventArgs e)
         {
-            this.cHARACTERSTableAdapter.Fill(this.gameDbDataSet.CHARACTERS, loggedUser.Id);
+            this.cHARACTERSTableAdapter
+                .FillWithExsHeroes(this.gameDbDataSet.CHARACTERS, loggedUser.Id);
             GameDbDataSet.CHARACTERSDataTable dtbl = this.cHARACTERSTableAdapter
                 .GetData(loggedUser.Id);
             for(int k = 0; k < dtbl.Rows.Count; k++)
@@ -109,6 +110,7 @@ namespace Game
                          ", а " + hero_2.CharacterName + " - с " + hero_2.HealthPoints
                     };
 
+                    rs.AddRoundToList(hero_1.HealthPoints, hero_2.HealthPoints, i, rand);
                     info = String.Join("\n", sarray);
                     dr = MessageBox.Show(info);
                     timer1.Start();
@@ -124,12 +126,12 @@ namespace Game
                          ", а " + hero_2.CharacterName + " - с " + hero_2.HealthPoints
                     };
 
+                    rs.AddRoundToList(hero_1.HealthPoints, hero_2.HealthPoints, i, rand);
                     info = String.Join("\n", sarray);
                     dr = MessageBox.Show(info);
                     timer1.Start();
                 }
 
-                rs.AddRoundToList(hero_1.HealthPoints, hero_2.HealthPoints, i, rand);
             }
 
             if (hero_1.HealthPoints > 0) {
@@ -171,12 +173,20 @@ namespace Game
             }
 
             rs.Clear();
+            MessageBox.Show("Готово!");
+        }
+
+        public DialogResult GetDialog()
+        {
+            return dr;
         }
 
         private void timer1_tick(object sender, EventArgs e)
         {
             timer1.Stop();
+            dr = GetDialog();
             dr = DialogResult.OK;
         }
+
     }
 }
