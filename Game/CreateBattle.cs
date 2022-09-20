@@ -54,10 +54,13 @@ namespace Game
                 .GetData(loggedUser.Id);
             for(int k = 0; k < dtbl.Rows.Count; k++)
             {
-                iDComboBox.Items.Add(dtbl.ElementAt<GameDbDataSet.CHARACTERSRow>(k)
-                .Field<int>(dtbl.IDColumn));
-                iDComboBox1.Items.Add(dtbl.ElementAt<GameDbDataSet.CHARACTERSRow>(k)
-                .Field<int>(dtbl.IDColumn));
+                if(dtbl.ElementAt<GameDbDataSet.CHARACTERSRow>(k)
+                .Field<int>(dtbl.HealthPointsColumn) > 0) { 
+                    iDComboBox.Items.Add(dtbl.ElementAt<GameDbDataSet.CHARACTERSRow>(k)
+                    .Field<int>(dtbl.IDColumn));
+                    iDComboBox1.Items.Add(dtbl.ElementAt<GameDbDataSet.CHARACTERSRow>(k)
+                    .Field<int>(dtbl.IDColumn));
+                }
             }
             
             this.cHARACTERSTableAdapter.Connection.Close();
@@ -110,7 +113,6 @@ namespace Game
                          ", а " + hero_2.CharacterName + " - с " + hero_2.HealthPoints
                     };
 
-                    rs.AddRoundToList(hero_1.HealthPoints, hero_2.HealthPoints, i, rand);
                     info = String.Join("\n", sarray);
                     dr = MessageBox.Show(info);
                     timer1.Start();
@@ -126,12 +128,12 @@ namespace Game
                          ", а " + hero_2.CharacterName + " - с " + hero_2.HealthPoints
                     };
 
-                    rs.AddRoundToList(hero_1.HealthPoints, hero_2.HealthPoints, i, rand);
                     info = String.Join("\n", sarray);
                     dr = MessageBox.Show(info);
                     timer1.Start();
                 }
-
+                    
+                rs.AddRoundToList(hero_1.HealthPoints, hero_2.HealthPoints, i, rand);
             }
 
             if (hero_1.HealthPoints > 0) {
@@ -170,6 +172,7 @@ namespace Game
                 Round r2 = rounds.Find(match);
                 rs.InsertRound(r2.Character1State, r2.Character2State, r2.RoundIndex,
                     r2.RandomNumber, b);
+                rounds.Remove(r2);
             }
 
             rs.Clear();
