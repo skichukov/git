@@ -47,16 +47,16 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bATTLESBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.BtnBack = new System.Windows.Forms.ToolStripButton();
+            this.seeDetails_Btn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.lessDetailsTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.moreDetailsTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.bATTLESDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnBack = new System.Windows.Forms.ToolStripButton();
-            this.seeDetails_Btn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.lessDetailsTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.moreDetailsTextBox = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gameDbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bATTLESBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bATTLESBindingNavigator)).BeginInit();
@@ -83,6 +83,7 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.BATTLESTableAdapter = this.bATTLESTableAdapter;
             this.tableAdapterManager.CHARACTERSTableAdapter = null;
+            this.tableAdapterManager.ROUNDSTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Game.GameDbDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.USERSTableAdapter = null;
             // 
@@ -216,6 +217,46 @@
             this.bATTLESBindingNavigatorSaveItem.Text = "Save Data";
             this.bATTLESBindingNavigatorSaveItem.Click += new System.EventHandler(this.bATTLESBindingNavigatorSaveItem_Click);
             // 
+            // BtnBack
+            // 
+            this.BtnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnBack.Image = ((System.Drawing.Image)(resources.GetObject("BtnBack.Image")));
+            this.BtnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(23, 22);
+            this.BtnBack.Text = "Към началния екран";
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            // 
+            // seeDetails_Btn
+            // 
+            this.seeDetails_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.seeDetails_Btn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lessDetailsTextBox,
+            this.moreDetailsTextBox});
+            this.seeDetails_Btn.Image = ((System.Drawing.Image)(resources.GetObject("seeDetails_Btn.Image")));
+            this.seeDetails_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.seeDetails_Btn.Name = "seeDetails_Btn";
+            this.seeDetails_Btn.Size = new System.Drawing.Size(119, 22);
+            this.seeDetails_Btn.Text = "Виж подробности";
+            // 
+            // lessDetailsTextBox
+            // 
+            this.lessDetailsTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lessDetailsTextBox.Name = "lessDetailsTextBox";
+            this.lessDetailsTextBox.ReadOnly = true;
+            this.lessDetailsTextBox.Size = new System.Drawing.Size(125, 23);
+            this.lessDetailsTextBox.Text = "В кратка форма";
+            this.lessDetailsTextBox.Click += new System.EventHandler(this.lessDetailsTextBox_Click);
+            // 
+            // moreDetailsTextBox
+            // 
+            this.moreDetailsTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.moreDetailsTextBox.Name = "moreDetailsTextBox";
+            this.moreDetailsTextBox.ReadOnly = true;
+            this.moreDetailsTextBox.Size = new System.Drawing.Size(125, 23);
+            this.moreDetailsTextBox.Text = "Повече подробности";
+            this.moreDetailsTextBox.Click += new System.EventHandler(this.moreDetailsTextBox_Click);
+            // 
             // bATTLESDataGridView
             // 
             this.bATTLESDataGridView.AutoGenerateColumns = false;
@@ -265,45 +306,6 @@
             this.dataGridViewTextBoxColumn5.DataPropertyName = "CreatedDate";
             this.dataGridViewTextBoxColumn5.HeaderText = "CreatedDate";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // BtnBack
-            // 
-            this.BtnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnBack.Image = ((System.Drawing.Image)(resources.GetObject("BtnBack.Image")));
-            this.BtnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnBack.Name = "BtnBack";
-            this.BtnBack.Size = new System.Drawing.Size(23, 22);
-            this.BtnBack.Text = "Към началния екран";
-            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
-            // 
-            // seeDetails_Btn
-            // 
-            this.seeDetails_Btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.seeDetails_Btn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lessDetailsTextBox,
-            this.moreDetailsTextBox});
-            this.seeDetails_Btn.Image = ((System.Drawing.Image)(resources.GetObject("seeDetails_Btn.Image")));
-            this.seeDetails_Btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.seeDetails_Btn.Name = "seeDetails_Btn";
-            this.seeDetails_Btn.Size = new System.Drawing.Size(119, 22);
-            this.seeDetails_Btn.Text = "Виж подробности";
-            // 
-            // lessDetailsTextBox
-            // 
-            this.lessDetailsTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lessDetailsTextBox.Name = "lessDetailsTextBox";
-            this.lessDetailsTextBox.ReadOnly = true;
-            this.lessDetailsTextBox.Size = new System.Drawing.Size(125, 23);
-            this.lessDetailsTextBox.Text = "В кратка форма";
-            this.lessDetailsTextBox.Click += new System.EventHandler(this.lessDetailsTextBox_Click);
-            // 
-            // moreDetailsTextBox
-            // 
-            this.moreDetailsTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.moreDetailsTextBox.Name = "moreDetailsTextBox";
-            this.moreDetailsTextBox.ReadOnly = true;
-            this.moreDetailsTextBox.Size = new System.Drawing.Size(125, 23);
-            this.moreDetailsTextBox.Text = "Повече подробности";
             // 
             // List_Battles
             // 

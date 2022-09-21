@@ -152,7 +152,8 @@ namespace Game
 
             Battle b = c.GetLatestBattle();
             List<Round> rounds = c.GetLocalRounds();
-            for(int j = 0; j < rounds.Count; j++)
+            int count = rounds.Count;
+            for(int j = 1; j <= count; j++)
             {
                 bool HasRound(Round r1)
                 {

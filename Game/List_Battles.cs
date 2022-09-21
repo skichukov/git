@@ -81,5 +81,21 @@ namespace Game
                 MessageBox.Show("Избери битка по Id!");
             }
         }
+
+        private void moreDetailsTextBox_Click(object sender, EventArgs e)
+        {
+            if (this.bATTLESDataGridView.CurrentCell.ColumnIndex == 0)
+            {
+                id = (int)this.bATTLESDataGridView.CurrentCell.Value;
+                Battle b = bs.GetBattleById(id);
+                Det_Battle details = new Det_Battle();
+                this.Hide();
+                details.Show();
+            }
+            else
+            {
+                MessageBox.Show("Избери битка по Id!");
+            }
+        }
     }
 }

@@ -68,5 +68,23 @@
         </ColumnUISetting>
       </ColumnUISettings>
     </TableUISetting>
+    <TableUISetting Name="ROUNDS">
+      <ColumnUISettings>
+        <ColumnUISetting Name="ID">
+          <ControlSettings>
+            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
+              <BindableControlInfo Name="[None]" Type="Microsoft.VSDesigner.Data.BindManager.NoneControlPlaceHolder" />
+            </ControlSetting>
+          </ControlSettings>
+        </ColumnUISetting>
+        <ColumnUISetting Name="BattleId">
+          <ControlSettings>
+            <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
+              <BindableControlInfo Name="[None]" Type="Microsoft.VSDesigner.Data.BindManager.NoneControlPlaceHolder" />
+            </ControlSetting>
+          </ControlSettings>
+        </ColumnUISetting>
+      </ColumnUISettings>
+    </TableUISetting>
   </TableUISettings>
 </DataSetUISetting>

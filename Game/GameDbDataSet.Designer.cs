@@ -32,8 +32,6 @@ namespace Game {
         
         private ROUNDSDataTable tableROUNDS;
         
-        private global::System.Data.DataRelation relationFK_BATTLES_ROUNDS;
-        
         private global::System.Data.DataRelation relationBattle_User;
         
         private global::System.Data.DataRelation relationLoser_Character;
@@ -41,6 +39,8 @@ namespace Game {
         private global::System.Data.DataRelation relationWinner_Character;
         
         private global::System.Data.DataRelation relationCharacter_User;
+        
+        private global::System.Data.DataRelation relationRound_Battle;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -276,11 +276,11 @@ namespace Game {
                     this.tableROUNDS.InitVars();
                 }
             }
-            this.relationFK_BATTLES_ROUNDS = this.Relations["FK_BATTLES_ROUNDS"];
             this.relationBattle_User = this.Relations["Battle_User"];
             this.relationLoser_Character = this.Relations["Loser_Character"];
             this.relationWinner_Character = this.Relations["Winner_Character"];
             this.relationCharacter_User = this.Relations["Character_User"];
+            this.relationRound_Battle = this.Relations["Round_Battle"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -299,18 +299,6 @@ namespace Game {
             base.Tables.Add(this.tableUSERS);
             this.tableROUNDS = new ROUNDSDataTable();
             base.Tables.Add(this.tableROUNDS);
-            global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_BATTLES_ROUNDS", new global::System.Data.DataColumn[] {
-                        this.tableBATTLES.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableROUNDS.BattleIdColumn});
-            this.tableROUNDS.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_BATTLES_ROUNDS = new global::System.Data.DataRelation("FK_BATTLES_ROUNDS", new global::System.Data.DataColumn[] {
-                        this.tableBATTLES.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableROUNDS.BattleIdColumn}, false);
-            this.Relations.Add(this.relationFK_BATTLES_ROUNDS);
             this.relationBattle_User = new global::System.Data.DataRelation("Battle_User", new global::System.Data.DataColumn[] {
                         this.tableUSERS.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableBATTLES.UserIdColumn}, false);
@@ -327,6 +315,10 @@ namespace Game {
                         this.tableUSERS.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableCHARACTERS.UserIdColumn}, false);
             this.Relations.Add(this.relationCharacter_User);
+            this.relationRound_Battle = new global::System.Data.DataRelation("Round_Battle", new global::System.Data.DataColumn[] {
+                        this.tableBATTLES.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableROUNDS.BattleIdColumn}, false);
+            this.Relations.Add(this.relationRound_Battle);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1439,6 +1431,14 @@ namespace Game {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ROUNDSDataTable : global::System.Data.TypedTableBase<ROUNDSRow> {
             
+            private global::System.Data.DataColumn columnCharacter1State;
+            
+            private global::System.Data.DataColumn columnCharacter2State;
+            
+            private global::System.Data.DataColumn columnRoundIndex;
+            
+            private global::System.Data.DataColumn columnRandomNumber;
+            
             private global::System.Data.DataColumn columnID;
             
             private global::System.Data.DataColumn columnBattleId;
@@ -1474,6 +1474,38 @@ namespace Game {
             protected ROUNDSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Character1StateColumn {
+                get {
+                    return this.columnCharacter1State;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Character2StateColumn {
+                get {
+                    return this.columnCharacter2State;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RoundIndexColumn {
+                get {
+                    return this.columnRoundIndex;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RandomNumberColumn {
+                get {
+                    return this.columnRandomNumber;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1529,17 +1561,28 @@ namespace Game {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ROUNDSRow AddROUNDSRow(BATTLESRow parentBATTLESRowByFK_BATTLES_ROUNDS) {
+            public ROUNDSRow AddROUNDSRow(int Character1State, int Character2State, int RoundIndex, int RandomNumber, BATTLESRow parentBATTLESRowByRound_Battle) {
                 ROUNDSRow rowROUNDSRow = ((ROUNDSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        Character1State,
+                        Character2State,
+                        RoundIndex,
+                        RandomNumber,
                         null,
                         null};
-                if ((parentBATTLESRowByFK_BATTLES_ROUNDS != null)) {
-                    columnValuesArray[1] = parentBATTLESRowByFK_BATTLES_ROUNDS[0];
+                if ((parentBATTLESRowByRound_Battle != null)) {
+                    columnValuesArray[5] = parentBATTLESRowByRound_Battle[0];
                 }
                 rowROUNDSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowROUNDSRow);
                 return rowROUNDSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ROUNDSRow FindByID(int ID) {
+                return ((ROUNDSRow)(this.Rows.Find(new object[] {
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1559,6 +1602,10 @@ namespace Game {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
+                this.columnCharacter1State = base.Columns["Character1State"];
+                this.columnCharacter2State = base.Columns["Character2State"];
+                this.columnRoundIndex = base.Columns["RoundIndex"];
+                this.columnRandomNumber = base.Columns["RandomNumber"];
                 this.columnID = base.Columns["ID"];
                 this.columnBattleId = base.Columns["BattleId"];
             }
@@ -1566,19 +1613,35 @@ namespace Game {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
+                this.columnCharacter1State = new global::System.Data.DataColumn("Character1State", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCharacter1State);
+                this.columnCharacter2State = new global::System.Data.DataColumn("Character2State", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCharacter2State);
+                this.columnRoundIndex = new global::System.Data.DataColumn("RoundIndex", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoundIndex);
+                this.columnRandomNumber = new global::System.Data.DataColumn("RandomNumber", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRandomNumber);
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnBattleId = new global::System.Data.DataColumn("BattleId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBattleId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, false));
+                                this.columnID}, true));
+                this.columnCharacter1State.AllowDBNull = false;
+                this.columnCharacter1State.ReadOnly = true;
+                this.columnCharacter2State.AllowDBNull = false;
+                this.columnCharacter2State.ReadOnly = true;
+                this.columnRoundIndex.AllowDBNull = false;
+                this.columnRoundIndex.ReadOnly = true;
+                this.columnRandomNumber.AllowDBNull = false;
+                this.columnRandomNumber.ReadOnly = true;
                 this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AutoIncrementSeed = 1;
                 this.columnID.AllowDBNull = false;
                 this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
                 this.columnBattleId.AllowDBNull = false;
+                this.columnBattleId.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1810,11 +1873,11 @@ namespace Game {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ROUNDSRow[] GetROUNDSRows() {
-                if ((this.Table.ChildRelations["FK_BATTLES_ROUNDS"] == null)) {
+                if ((this.Table.ChildRelations["Round_Battle"] == null)) {
                     return new ROUNDSRow[0];
                 }
                 else {
-                    return ((ROUNDSRow[])(base.GetChildRows(this.Table.ChildRelations["FK_BATTLES_ROUNDS"])));
+                    return ((ROUNDSRow[])(base.GetChildRows(this.Table.ChildRelations["Round_Battle"])));
                 }
             }
         }
@@ -2052,6 +2115,50 @@ namespace Game {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Character1State {
+                get {
+                    return ((int)(this[this.tableROUNDS.Character1StateColumn]));
+                }
+                set {
+                    this[this.tableROUNDS.Character1StateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Character2State {
+                get {
+                    return ((int)(this[this.tableROUNDS.Character2StateColumn]));
+                }
+                set {
+                    this[this.tableROUNDS.Character2StateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int RoundIndex {
+                get {
+                    return ((int)(this[this.tableROUNDS.RoundIndexColumn]));
+                }
+                set {
+                    this[this.tableROUNDS.RoundIndexColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int RandomNumber {
+                get {
+                    return ((int)(this[this.tableROUNDS.RandomNumberColumn]));
+                }
+                set {
+                    this[this.tableROUNDS.RandomNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int ID {
                 get {
                     return ((int)(this[this.tableROUNDS.IDColumn]));
@@ -2076,10 +2183,10 @@ namespace Game {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public BATTLESRow BATTLESRow {
                 get {
-                    return ((BATTLESRow)(this.GetParentRow(this.Table.ParentRelations["FK_BATTLES_ROUNDS"])));
+                    return ((BATTLESRow)(this.GetParentRow(this.Table.ParentRelations["Round_Battle"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_BATTLES_ROUNDS"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["Round_Battle"]);
                 }
             }
         }
@@ -3327,6 +3434,238 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class ROUNDSTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public ROUNDSTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "ROUNDS";
+            tableMapping.ColumnMappings.Add("Character1State", "Character1State");
+            tableMapping.ColumnMappings.Add("Character2State", "Character2State");
+            tableMapping.ColumnMappings.Add("RoundIndex", "RoundIndex");
+            tableMapping.ColumnMappings.Add("RandomNumber", "RandomNumber");
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("BattleId", "BattleId");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [ROUNDS] WHERE (([Character1State] = @Original_Character1State) AND ([Character2State] = @Original_Character2State) AND ([RoundIndex] = @Original_RoundIndex) AND ([RandomNumber] = @Original_RandomNumber) AND ([ID] = @Original_ID) AND ([BattleId] = @Original_BattleId))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Character1State", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Character1State", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Character2State", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Character2State", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoundIndex", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundIndex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RandomNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RandomNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BattleId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BattleId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [ROUNDS] SET [Character1State] = @Character1State, [Character2State] = @Character2State, [RoundIndex] = @RoundIndex, [RandomNumber] = @RandomNumber, [BattleId] = @BattleId WHERE (([Character1State] = @Original_Character1State) AND ([Character2State] = @Original_Character2State) AND ([RoundIndex] = @Original_RoundIndex) AND ([RandomNumber] = @Original_RandomNumber) AND ([ID] = @Original_ID) AND ([BattleId] = @Original_BattleId));
+SELECT Character1State, Character2State, RoundIndex, RandomNumber, ID, BattleId FROM ROUNDS WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Character1State", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Character1State", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Character2State", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Character2State", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoundIndex", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundIndex", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RandomNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RandomNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BattleId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BattleId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Character1State", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Character1State", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Character2State", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Character2State", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoundIndex", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundIndex", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RandomNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RandomNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BattleId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BattleId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = "Data Source=STILI\\SQLEXPRESS;Initial Catalog=GameDb;Integrated Security=True";
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT        Character1State, Character2State, RoundIndex, RandomNumber, ID, Bat" +
+                "tleId\r\nFROM            ROUNDS\r\nWHERE        (BattleId = @BattleId)";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BattleId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "BattleId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GameDbDataSet.ROUNDSDataTable dataTable, int BattleId) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(BattleId));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GameDbDataSet.ROUNDSDataTable GetData(int BattleId) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(BattleId));
+            GameDbDataSet.ROUNDSDataTable dataTable = new GameDbDataSet.ROUNDSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GameDbDataSet.ROUNDSDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(GameDbDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "ROUNDS");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3343,6 +3682,8 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
         private CHARACTERSTableAdapter _cHARACTERSTableAdapter;
         
         private USERSTableAdapter _uSERSTableAdapter;
+        
+        private ROUNDSTableAdapter _rOUNDSTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -3403,6 +3744,20 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public ROUNDSTableAdapter ROUNDSTableAdapter {
+            get {
+                return this._rOUNDSTableAdapter;
+            }
+            set {
+                this._rOUNDSTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -3432,6 +3787,10 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
                             && (this._uSERSTableAdapter.Connection != null))) {
                     return this._uSERSTableAdapter.Connection;
                 }
+                if (((this._rOUNDSTableAdapter != null) 
+                            && (this._rOUNDSTableAdapter.Connection != null))) {
+                    return this._rOUNDSTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -3452,6 +3811,9 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
                     count = (count + 1);
                 }
                 if ((this._uSERSTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._rOUNDSTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -3492,6 +3854,15 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._rOUNDSTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.ROUNDS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._rOUNDSTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -3526,6 +3897,14 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._rOUNDSTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.ROUNDS.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._rOUNDSTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -3536,6 +3915,14 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(GameDbDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._rOUNDSTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.ROUNDS.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._rOUNDSTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._bATTLESTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.BATTLES.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -3614,6 +4001,11 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._rOUNDSTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._rOUNDSTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -3671,6 +4063,15 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
                     if (this._uSERSTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._uSERSTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._uSERSTableAdapter.Adapter);
+                    }
+                }
+                if ((this._rOUNDSTableAdapter != null)) {
+                    revertConnections.Add(this._rOUNDSTableAdapter, this._rOUNDSTableAdapter.Connection);
+                    this._rOUNDSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._rOUNDSTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._rOUNDSTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._rOUNDSTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._rOUNDSTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -3742,6 +4143,10 @@ SELECT ID, NAME, USERNAME, PASSWORD, DateCreated FROM USERS WHERE (ID = @ID)";
                 if ((this._uSERSTableAdapter != null)) {
                     this._uSERSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._uSERSTableAdapter]));
                     this._uSERSTableAdapter.Transaction = null;
+                }
+                if ((this._rOUNDSTableAdapter != null)) {
+                    this._rOUNDSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._rOUNDSTableAdapter]));
+                    this._rOUNDSTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
