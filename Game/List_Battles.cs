@@ -88,6 +88,7 @@ namespace Game
             {
                 id = (int)this.bATTLESDataGridView.CurrentCell.Value;
                 Battle b = bs.GetBattleById(id);
+                bs.SetBattle(b);
                 Det_Battle details = new Det_Battle();
                 this.Hide();
                 details.Show();

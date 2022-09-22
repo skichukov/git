@@ -55,6 +55,7 @@
             this.character2StateTextBox = new System.Windows.Forms.TextBox();
             this.roundIndexTextBox = new System.Windows.Forms.TextBox();
             this.randomNumberTextBox = new System.Windows.Forms.TextBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             character1StateLabel = new System.Windows.Forms.Label();
             character2StateLabel = new System.Windows.Forms.Label();
             roundIndexLabel = new System.Windows.Forms.Label();
@@ -142,7 +143,8 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.rOUNDSBindingNavigatorSaveItem});
+            this.rOUNDSBindingNavigatorSaveItem,
+            this.toolStripButton1});
             this.rOUNDSBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.rOUNDSBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.rOUNDSBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -157,6 +159,7 @@
             // bindingNavigatorAddNewItem
             // 
             this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Enabled = false;
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
@@ -173,6 +176,7 @@
             // bindingNavigatorDeleteItem
             // 
             this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Enabled = false;
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
@@ -281,6 +285,16 @@
             this.randomNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.randomNumberTextBox.TabIndex = 9;
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(43, 22);
+            this.toolStripButton1.Text = "Назад";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // Det_Battle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,6 +311,7 @@
             this.Controls.Add(this.rOUNDSBindingNavigator);
             this.Name = "Det_Battle";
             this.Text = "Det_Battle";
+            this.Load += new System.EventHandler(this.Det_Battle_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gameDbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rOUNDSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rOUNDSBindingNavigator)).EndInit();
@@ -330,5 +345,6 @@
         private System.Windows.Forms.TextBox character2StateTextBox;
         private System.Windows.Forms.TextBox roundIndexTextBox;
         private System.Windows.Forms.TextBox randomNumberTextBox;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

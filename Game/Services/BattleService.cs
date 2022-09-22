@@ -34,7 +34,12 @@ namespace Game.Services
             battleRep.SetLatestBattle(b);
         }
 
-        public Battle GetLatestBattle()
+        public void SetBattle(Battle b)
+        {
+            battleRep.SetLatestBattle(b);
+        }
+
+        public Battle GetBattle()
         {
             return battleRep.GetLatestBattle();
         }

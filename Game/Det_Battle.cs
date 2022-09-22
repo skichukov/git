@@ -14,10 +14,12 @@ namespace Game
     public partial class Det_Battle : Form
     {
         Battle selectedBattle;
+        Constants c = Constants.GetConstants();
 
         public Det_Battle()
         {
             InitializeComponent();
+            selectedBattle = c.GetBattle();
         }
 
         private void rOUNDSBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -28,17 +30,24 @@ namespace Game
 
         }
 
-        private void fill(Battle b)
+        private void Det_Battle_Load(object sender, System.EventArgs e)
         {
             try
             {
-                this.rOUNDSTableAdapter.Fill(this.gameDbDataSet.ROUNDS, b.Id);
+                this.rOUNDSTableAdapter.Fill(this.gameDbDataSet.ROUNDS, selectedBattle.Id);
             }
             catch (System.Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            List_Battles lb = new List_Battles();
+            this.Hide();
+            lb.Show();
         }
     }
 }

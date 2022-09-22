@@ -150,7 +150,7 @@ namespace Game
                 hs.UpdateHero(hero_2);
             }
 
-            Battle b = c.GetLatestBattle();
+            Battle b = c.GetBattle();
             List<Round> rounds = c.GetLocalRounds();
             int count = rounds.Count;
             for(int j = 1; j <= count; j++)

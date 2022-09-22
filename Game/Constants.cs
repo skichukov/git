@@ -49,9 +49,9 @@ namespace Game
             return GetUserService().GetCurrentUser();
         }
 
-        public Battle GetLatestBattle()
+        public Battle GetBattle()
         {
-            return GetBattleService().GetLatestBattle();
+            return GetBattleService().GetBattle();
         }
 
         public List<Round> GetLocalRounds()
