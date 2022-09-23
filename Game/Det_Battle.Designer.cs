@@ -51,11 +51,13 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.rOUNDSBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.BtnBack = new System.Windows.Forms.ToolStripButton();
             this.character1StateTextBox = new System.Windows.Forms.TextBox();
             this.character2StateTextBox = new System.Windows.Forms.TextBox();
             this.roundIndexTextBox = new System.Windows.Forms.TextBox();
             this.randomNumberTextBox = new System.Windows.Forms.TextBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             character1StateLabel = new System.Windows.Forms.Label();
             character2StateLabel = new System.Windows.Forms.Label();
             roundIndexLabel = new System.Windows.Forms.Label();
@@ -69,38 +71,38 @@
             // character1StateLabel
             // 
             character1StateLabel.AutoSize = true;
-            character1StateLabel.Location = new System.Drawing.Point(288, 128);
+            character1StateLabel.Location = new System.Drawing.Point(206, 128);
             character1StateLabel.Name = "character1StateLabel";
-            character1StateLabel.Size = new System.Drawing.Size(87, 13);
+            character1StateLabel.Size = new System.Drawing.Size(147, 13);
             character1StateLabel.TabIndex = 2;
-            character1StateLabel.Text = "Character1State:";
+            character1StateLabel.Text = "Кръв на атакуващия герой:";
             // 
             // character2StateLabel
             // 
             character2StateLabel.AutoSize = true;
-            character2StateLabel.Location = new System.Drawing.Point(288, 154);
+            character2StateLabel.Location = new System.Drawing.Point(206, 154);
             character2StateLabel.Name = "character2StateLabel";
-            character2StateLabel.Size = new System.Drawing.Size(87, 13);
+            character2StateLabel.Size = new System.Drawing.Size(172, 13);
             character2StateLabel.TabIndex = 4;
-            character2StateLabel.Text = "Character2State:";
+            character2StateLabel.Text = "Кръв на защитаващия се герой:";
             // 
             // roundIndexLabel
             // 
             roundIndexLabel.AutoSize = true;
-            roundIndexLabel.Location = new System.Drawing.Point(288, 180);
+            roundIndexLabel.Location = new System.Drawing.Point(206, 180);
             roundIndexLabel.Name = "roundIndexLabel";
-            roundIndexLabel.Size = new System.Drawing.Size(71, 13);
+            roundIndexLabel.Size = new System.Drawing.Size(67, 13);
             roundIndexLabel.TabIndex = 6;
-            roundIndexLabel.Text = "Round Index:";
+            roundIndexLabel.Text = "Рунд поред:";
             // 
             // randomNumberLabel
             // 
             randomNumberLabel.AutoSize = true;
-            randomNumberLabel.Location = new System.Drawing.Point(288, 206);
+            randomNumberLabel.Location = new System.Drawing.Point(206, 206);
             randomNumberLabel.Name = "randomNumberLabel";
-            randomNumberLabel.Size = new System.Drawing.Size(90, 13);
+            randomNumberLabel.Size = new System.Drawing.Size(89, 13);
             randomNumberLabel.TabIndex = 8;
-            randomNumberLabel.Text = "Random Number:";
+            randomNumberLabel.Text = "Случайно число:";
             // 
             // gameDbDataSet
             // 
@@ -144,7 +146,7 @@
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.rOUNDSBindingNavigatorSaveItem,
-            this.toolStripButton1});
+            this.BtnBack});
             this.rOUNDSBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.rOUNDSBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.rOUNDSBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -253,11 +255,22 @@
             this.rOUNDSBindingNavigatorSaveItem.Text = "Save Data";
             this.rOUNDSBindingNavigatorSaveItem.Click += new System.EventHandler(this.rOUNDSBindingNavigatorSaveItem_Click);
             // 
+            // BtnBack
+            // 
+            this.BtnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.BtnBack.Image = ((System.Drawing.Image)(resources.GetObject("BtnBack.Image")));
+            this.BtnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(43, 22);
+            this.BtnBack.Text = "Назад";
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            // 
             // character1StateTextBox
             // 
             this.character1StateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rOUNDSBindingSource, "Character1State", true));
             this.character1StateTextBox.Location = new System.Drawing.Point(384, 125);
             this.character1StateTextBox.Name = "character1StateTextBox";
+            this.character1StateTextBox.ReadOnly = true;
             this.character1StateTextBox.Size = new System.Drawing.Size(100, 20);
             this.character1StateTextBox.TabIndex = 3;
             // 
@@ -266,6 +279,7 @@
             this.character2StateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rOUNDSBindingSource, "Character2State", true));
             this.character2StateTextBox.Location = new System.Drawing.Point(384, 151);
             this.character2StateTextBox.Name = "character2StateTextBox";
+            this.character2StateTextBox.ReadOnly = true;
             this.character2StateTextBox.Size = new System.Drawing.Size(100, 20);
             this.character2StateTextBox.TabIndex = 5;
             // 
@@ -274,6 +288,7 @@
             this.roundIndexTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rOUNDSBindingSource, "RoundIndex", true));
             this.roundIndexTextBox.Location = new System.Drawing.Point(384, 177);
             this.roundIndexTextBox.Name = "roundIndexTextBox";
+            this.roundIndexTextBox.ReadOnly = true;
             this.roundIndexTextBox.Size = new System.Drawing.Size(100, 20);
             this.roundIndexTextBox.TabIndex = 7;
             // 
@@ -282,24 +297,25 @@
             this.randomNumberTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rOUNDSBindingSource, "RandomNumber", true));
             this.randomNumberTextBox.Location = new System.Drawing.Point(384, 203);
             this.randomNumberTextBox.Name = "randomNumberTextBox";
+            this.randomNumberTextBox.ReadOnly = true;
             this.randomNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.randomNumberTextBox.TabIndex = 9;
             // 
-            // toolStripButton1
+            // label1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(43, 22);
-            this.toolStripButton1.Text = "Назад";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(206, 251);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "label1";
             // 
             // Det_Battle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(character1StateLabel);
             this.Controls.Add(this.character1StateTextBox);
             this.Controls.Add(character2StateLabel);
@@ -345,6 +361,8 @@
         private System.Windows.Forms.TextBox character2StateTextBox;
         private System.Windows.Forms.TextBox roundIndexTextBox;
         private System.Windows.Forms.TextBox randomNumberTextBox;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton BtnBack;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
