@@ -103,6 +103,8 @@
             randomNumberLabel.Size = new System.Drawing.Size(89, 13);
             randomNumberLabel.TabIndex = 8;
             randomNumberLabel.Text = "Случайно число:";
+            this.toolTip1.SetToolTip(randomNumberLabel, "Това число се прибавя към атаката на атакуващия герой и от него зависи кой колко " +
+        "удара ще нанесе на другия.");
             // 
             // gameDbDataSet
             // 
@@ -231,6 +233,7 @@
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
+            this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
             // 
             // bindingNavigatorMoveLastItem
             // 
@@ -306,9 +309,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(206, 251);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 10;
-            this.label1.Text = "label1";
+            this.label1.Text = "label";
             // 
             // Det_Battle
             // 
